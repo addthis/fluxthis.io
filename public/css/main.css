@@ -20,9 +20,11 @@ footer {
     margin-top: 50px;
 }
 .get-started-btn-bottom {
+    margin-top: 50px;
     text-align: center;
 }
 .get-started-btn-bottom  > a {
-    color: #000;
-    border-color: #000;
+    color: #FFF;
+    background-color: #F7A66A;
+    border-color: #FFF;
 }
