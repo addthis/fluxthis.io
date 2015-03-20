@@ -31,6 +31,10 @@ export default React.createClass({
                     </div>
                 </nav>
                 <RouteHandler {...this.props}/>
+
+                <footer className={'container'}>
+                   {'Copyright 2014, AddThis. Last updated on Mar 20, 2015.'}
+                </footer>
             </div>
         );
     }

@@ -275,7 +275,12 @@
 	                    )
 	                )
 	            ),
-	            React.createElement(RouteHandler, this.props)
+	            React.createElement(RouteHandler, this.props),
+	            React.createElement(
+	                "footer",
+	                { className: "container" },
+	                "Copyright 2014, AddThis. Last updated on Mar 20, 2015."
+	            )
 	        );
 	    }
 	});
@@ -8992,7 +8997,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(136)();
-	exports.push([module.id, ".jumbotron {\n    background-color: #F7A66A;\n    color: #fff;\n}\n.main-container {\n    text-align: center;\n}\n.btn-outline-inverse {\n    color: #fff;\n    background-color: transparent;\n    border-color: #fff;\n}\n.get-started-btn {\n    margin-top: 50px;\n}\n.get-started-btn-bottom {\n    text-align: center;\n}\n.get-started-btn-bottom  > a {\n    color: #000;\n    border-color: #000;\n}", ""]);
+	exports.push([module.id, "footer {\n    margin-top: 100px;\n    padding-bottom: 25px;\n    text-align: center;\n}\n.jumbotron {\n    background-color: #F7A66A;\n    color: #fff;\n}\n.main-container {\n    text-align: center;\n}\n.btn-outline-inverse {\n    color: #fff;\n    background-color: transparent;\n    border-color: #fff;\n}\n.get-started-btn {\n    margin-top: 50px;\n}\n.get-started-btn-bottom {\n    text-align: center;\n}\n.get-started-btn-bottom  > a {\n    color: #000;\n    border-color: #000;\n}\n", ""]);
 
 /***/ },
 /* 76 */
