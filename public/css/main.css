@@ -1,0 +1,15 @@
+.jumbotron {
+    background-color: #F7A66A;
+    color: #fff;
+}
+.main-container {
+    text-align: center;
+}
+.btn-outline-inverse {
+    color: #fff;
+    background-color: transparent;
+    border-color: #fff;
+}
+.get-started-btn {
+    margin-top: 50px;
+}

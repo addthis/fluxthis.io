@@ -1,5 +1,0 @@
-#Foo
-
-## Sup
-* hi
-* lo

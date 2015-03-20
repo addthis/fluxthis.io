@@ -2,32 +2,34 @@
 
 const React = require('react');
 const RotatingCube = require('./logo/RotatingCube');
+const html = require('main.md');
+
+require('css/main.css');
+
 
 export default React.createClass({
     displayName: '',
     render() {
         return (
             <div>
-                <section className={'container'}>
-                    <span style={{
-                        position: 'relative',
-                        top: '110px'
-                    }}>
-                        <span style={{
-                            fontStyle: 'italic',
-                            fontFamily: 'cursive'
-                        }}>
-							{'f'}
-                        </span>
-                        <span style={{
-                            fontFamily: '"Times new roman", serif'
-                        }}>
-							{'luxthis'}
-                        </span>
-                    </span>
-                    <RotatingCube/>
-                    <RotatingCube/>
+                <section className={'jumbotron'}>
+                    <div className={'container main-container'}>
+                        <h1 className={'lead'}>FluxThis</h1>
+                        <p className={'lead'}>
+                            The super-opinionated, yell-at-you-for-everything, immutable Flux framework by AddThis.
+                        </p>
+                        <p className={'lead get-started-btn'}>
+                            <a
+                                href="#/docs"
+                                className="btn btn-outline-inverse btn-lg">
+                                Get Started
+                            </a>
+                        </p>
+                    </div>
                 </section>
+                <div
+                    dangerouslySetInnerHTML={{__html: html}}
+                    className='markdown-body'/>
             </div>
         );
     }

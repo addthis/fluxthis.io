@@ -1,0 +1,32 @@
+body,html {
+    background: #f5f5f5;
+}
+.markdown-body {
+    min-width: 200px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px;
+}
+@media (min-width: 768px) {
+    .navbar-right {
+        margin-right: 100px;
+    }
+    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header,
+    .container > .navbar-collapse, .container > .navbar-header {
+        margin-left: 200px;
+    }
+}
+
+.navbar {
+    margin-bottom: 0px;
+    color: white;
+}
+.navbar.navbar-default, .navbar-brand, .active, .active > a, .nav > li > a {
+    background-color: #F7A66A !important;
+    border-color: #F7A66A;
+    color: white !important;
+}
+
+.active > a {
+    text-decoration: underline;
+}
