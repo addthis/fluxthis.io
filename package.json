@@ -26,7 +26,8 @@
     "github-markdown-css": "2.0.7",
     "material-ui": "0.7.1",
     "react": "0.12.2",
-    "react-router": "0.12.4"
+    "react-router": "0.12.4",
+    "react-tap-event-plugin": "^0.1.4"
   },
   "devDependencies": {
     "babel": "4.7.16",
@@ -36,7 +37,7 @@
     "gulp": "3.8.11",
     "html-loader": "0.2.3",
     "less": "2.4.0",
-    "less-loader": "2.1.0",
+    "less-loader": "^2.1.0",
     "markdown-loader": "0.1.2",
     "style-loader": "0.8.3",
     "webpack": "1.7.3"

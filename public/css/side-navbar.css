@@ -1,0 +1,15 @@
+.docs-container {
+    margin-top: 50px;
+}
+#sidebar > li > a {
+    background-color: transparent !important;
+    color: #333 !important;
+    padding: 5px 5px;
+}
+.divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #F7A66A;
+    width: 75%;
+}

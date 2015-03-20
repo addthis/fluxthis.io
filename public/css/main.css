@@ -2,6 +2,7 @@ footer {
     margin-top: 100px;
     padding-bottom: 25px;
     text-align: center;
+    bottom: 0;
 }
 .jumbotron {
     background-color: #F7A66A;

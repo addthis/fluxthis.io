@@ -11,30 +11,27 @@ export default React.createClass({
     render() {
         return  (
             <div>
-                <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
+                <nav className='navbar navbar-default'>
+                    <div className='container-fluid'>
+                        <div className='navbar-header'>
+                            <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
+                                <span className='sr-only'>Toggle navigation</span>
+                                <span className='icon-bar'></span>
+                                <span className='icon-bar'></span>
+                                <span className='icon-bar'></span>
                             </button>
-                            <a className="navbar-brand" href="#">FluxThis</a>
+                            <a className='navbar-brand' href='#'>FluxThis</a>
                         </div>
-                        <div id="navbar" className="navbar-collapse collapse">
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><a href="https://github.com/addthis/fluxthis/issues">Support</a></li>
-                                <li><a href="https://github.com/addthis/fluxthis">Github</a></li>
+                        <div id='navbar' className='navbar-collapse collapse'>
+                            <ul className='nav navbar-nav navbar-right'>
+                                <li><Link to='about'>Documentation</Link></li>
+                                <li><a href='https://github.com/addthis/fluxthis/issues'>Support</a></li>
+                                <li><a href='https://github.com/addthis/fluxthis'>Github</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
                 <RouteHandler {...this.props}/>
-
-                <footer className={'container'}>
-                   {'Copyright 2014, AddThis. Last updated on Mar 20, 2015.'}
-                </footer>
             </div>
         );
     }
