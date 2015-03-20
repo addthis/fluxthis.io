@@ -13,3 +13,10 @@
 .get-started-btn {
     margin-top: 50px;
 }
+.get-started-btn-bottom {
+    text-align: center;
+}
+.get-started-btn-bottom  > a {
+    color: #000;
+    border-color: #000;
+}

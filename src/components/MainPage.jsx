@@ -6,7 +6,6 @@ const html = require('main.md');
 
 require('css/main.css');
 
-
 export default React.createClass({
     displayName: '',
     render() {
@@ -20,8 +19,8 @@ export default React.createClass({
                         </p>
                         <p className={'lead get-started-btn'}>
                             <a
-                                href="#/docs"
-                                className="btn btn-outline-inverse btn-lg">
+                                href='https://github.com/addthis/fluxthis'
+                                className='btn btn-outline-inverse btn-lg'>
                                 Get Started
                             </a>
                         </p>
@@ -30,6 +29,14 @@ export default React.createClass({
                 <div
                     dangerouslySetInnerHTML={{__html: html}}
                     className='markdown-body'/>
+
+                <p className={'lead get-started-btn-bottom'}>
+                    <a
+                        href='https://github.com/addthis/fluxthis'
+                        className='btn btn-outline-inverse btn-lg'>
+                        Get Started
+                    </a>
+                </p>
             </div>
         );
     }

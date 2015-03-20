@@ -6,11 +6,6 @@
 3. Reduce boilerplate and create simple modular apis
 4. Allow individual modules to be used standalone
 
-## Installation
-
-Install from npm:
-`npm install fluxthis --save`
-
 ## Motivation
 
 One of the great things about React is how strict it is. If you do something
