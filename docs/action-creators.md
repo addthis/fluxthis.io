@@ -26,17 +26,41 @@ know as little as possible about the other objects in the system. This
 results in software that is more maintainable, adaptable, testable, and
 easier for new engineering team members to understand.
 
+### Requiring
+
+You can require the store individually, with some type of es6 loader:
+
+```js
+var ActionCreator = require('fluxthis/src/ActionCreator');
+```
+
+or you can require a built version of the store that doesn't need es6
+compilation.
+
+```js
+var ActionCreator = require('fluxthis').ActionCreator;
+```
+
+
+### Constructing
+
+```js
+var myActionCreator = new ActionCreator(options);
+```
+
+#### Options
+- `displayName` Human readable name for debugging **optional**
+- `actionSource` Source string so that stores know who the action originated from **optional**
 
 ## ActionCreator Example
 
 ```js
-var FluxThis = require('FluxThis');
+var FluxThis = require('fluxthis');
 var ActionCreator = FluxThis.ActionCreator;
-var myActionCreator = new ActionCreator({
-	// used for debugging messages
-	displayName: 'My',
 
-	//used by stores to identity a group of related actions
+var myActionCreator = new ActionCreator({
+	displayName: 'MyActionCreator',
+
 	actionSource: 'CONTRIVED_EXAMPLE',
 
 	//defines a public method
@@ -77,3 +101,36 @@ myActionCreator.doThing({
 
 myActionCreator.doOtherThing();
 ```
+
+#### Action Type
+
+`actionType` is a string value that corresponds to an action. This value
+is what stores listen to in `this.bindActions` and respond to internally
+if the store cares about a given action.
+
+
+#### Payload Type
+
+`payloadType` is exactly like `propTypes` in React, which you can read more
+about [here](https://facebook.github.io/react/docs/reusable-components.html).
+
+You may access these `payloadType` values via:
+
+```js
+ActionCreator.PayloadTypes
+```
+
+What we did in FluxThis was expose PropTypes to actions, so that you could
+validate your action payloads just like you can with prop types in any
+environment that is *not* production. That means, when in production FluxThis
+will not check ActionTypes to ensure performance.
+
+#### createPayload(...args)
+
+`createPayload` provides you with a pre-process step prior to sending the
+action to the dispatcher. This means you can receive attributes and create
+a custom payload that you will return from `createPayload` as an object.
+
+This is a good location to set default action values or do any logic
+needed prior to dispatching an action, such as making an ajax call to the
+server.
