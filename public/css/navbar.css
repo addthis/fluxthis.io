@@ -37,6 +37,9 @@ li.test > a {
     margin: 0 auto;
 }
 @media (min-width: 768px) {
+    .navbar {
+        border-radius: 0px;
+    }
     .navbar-right {
         margin-right: 100px;
     }
