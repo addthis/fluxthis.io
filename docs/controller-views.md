@@ -43,18 +43,31 @@ var MyView = React.createClass({
 		}
 	},
 	getDefaultProps: function () {
-		return {a: 0, b: 1}
+		return {a: 0, b: 1};
+	},
+	getInitialState() {
+	    // DON'T USE THIS METHOD.
+	    // Use getStateFromStores
 	},
 	render: function () {
-		return <div>hi!</div>
+		// return some jsx goodness
 	}
 });
 
-// and to render it:
 var element = React.createElement(MyView);
 React.render(element, document.getElementById('main'));
 ```
+
 #### getStateFromStores()
+
 This function will be called when any dependant store fires a change event. In
 the built-in stores, change events are fired any time a private function is
 called (their purpose is changing data).
+
+#### getInitialState()
+
+**Note: ** When using this mixin you should **not** use this lifecycle method.
+
+Any initial state should be setup in `getStateFromStores` as FluxThis will
+call this method.
+
