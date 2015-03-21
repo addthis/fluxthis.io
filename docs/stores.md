@@ -20,3 +20,5 @@ Within FluxThis, we follow the same philosophy; however,
 we add some restrictions to a generic store.
 
 ## Immutable all the things
+
+work in progress...

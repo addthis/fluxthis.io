@@ -1,1 +1,3 @@
 # Invariants Explained
+
+work in progress...
