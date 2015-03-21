@@ -45,7 +45,7 @@ var myStore = new Store({
 For more information on how immutables work, please check out
 [facebook's library here](https://github.com/facebook/immutable-js).
 
-### ImmutableStore
+## ImmutableStore
 The ImmutableStore is a very OO inspired store which strictly enforces the use
 of immutable data. All properties of the store must be either immutable or JS
 primitives to avoid throwing errors. If a public function ever returns a value
@@ -53,20 +53,24 @@ which does not meet these requirements, a different error is thrown. Let the
 code enforce best practices so your team can relax.
 
 ```js
-var FluxThis = require('FluxThis');
+var FluxThis = require('fluxthis');
 var ImmutableStore = FluxThis.ImmutableStore;
+var Immutable = ImmutableStore.Immutable;
+
 var myStore = new ImmutableStore({
 	init: function () {
 		this.url = 'github.com';
 		this.count = 10;
-		this.data = ImmutableStore.Immutable.fromJS({
+		this.data = Immutable.fromJS({
 			hi: [1,2,3],
 			mom: 'lol'
 		});
 	},
+	// Setters
 	private: {
-		/* learn about accessors later */
+		/* learn about mutators later */
 	},
+	// Getters
 	public: {
 		getUrl: function () {
 			return this.url;
@@ -81,13 +85,21 @@ var myStore = new ImmutableStore({
 });
 ```
 
-#### Requiring
+### Requiring
+
+You can require the store individually, with some type of es6 loader:
 
 ```js
-// individually, with webpack and an es6 loader
 var ImmutableStore = require('fluxthis/src/ImmutableStore');
 ```
-#### Constructing
+
+or you can require a built version of the store that doesn't need es6
+compilation.
+
+```js
+var ImmutableStore = require('fluxthis').ImmutableStore;
+```
+### Constructing
 
 ```js
 var myStore = new ImmutableStore(options);
@@ -100,7 +112,26 @@ var myStore = new ImmutableStore(options);
 - `init` A function which is called at the creation of the store. Used to set up
 initial store state, as well as call `bindActions`.
 
-#### Public methods
+### Initialization
+The `init` function is used to set up initial store state, as well as bind
+private store functions to handle dispatched actions using `this.bindActions`.
+
+**Note: ** The TestUtils.reset method will use this method to reset
+the store to an initial state, so it's good practice to declare default
+variable values here, if needed.
+
+```js
+var Immutable = ImmutableStore.Immutable;
+
+// Create your new store!
+var myStore = new ImmutableStore({
+    init: function () {
+    	this.names = Immutable.Map({0: 'Jake Scott', {1: 'Josh Horwitz'}});
+    }
+});
+```
+
+### Public methods
 Public methods are exposed on the Store after its creation. They should not be
 used to update the state of a store, only access data that is inside of it.
 
@@ -111,73 +142,94 @@ if you modify that object, then you modify the store and violate flux
 principles of 1 direction flow.
 
 ```javascript
-public: {
-	// returning primitives is OK.
-	getName: function (id) {
-		// this.info = Immutable.fromJS({id_0: {name: 'jake'}, id_1: ...})
-		return this.info.getIn([id, 'name']);
-	},
+var myStore = new ImmutableStore({
+    init: function () { // do stuff },
+    public: {
+        // returning primitive values are OK.
+        getName: function (id) {
+            return this.names.get(0);
+        },
 
-	// returning immutables is OK too
-	getInfo: function (id) {
-		return this.info.get(id);
-	},
+        // WRONG
+        // returning a plain javsacript object is
+        // NOT OKAY WHAT THE HELL ARE YOU THINKING?!
+        getNamesWrong: function () {
+            return this.names.toJS();
+        }
 
-	// returning objects is NOT OKAY WHAT THE HELL ARE YOU THINKING?!
-	getPlainInfo: function () {
-		badIdea = {id_0: {name: 'jake'}};
-		return badIdea;
-	}
-}
+        // Correct
+        getNames: function () {
+            return this.names; // Return immutable map
+        }
+    }
+});
+
+console.log(myStore.getName()); // "Jake Scott"
+
+console.log(myStore.getNamesWrong()); // Error thrown
+
+console.log(myStore.getNames()) // Immutable Map object
 ```
 
-#### Private methods
+### Private methods
 Private methods are available through `this` only when inside of other Store
-methods. Inside private methods, you have access to both public and private
+methods. This means you cannot access private methods outside
+of the store. Inside private methods, you have access to both public and private
 methods of the store, as well as private store data.
 
 ```js
-private: {
-	// Update private, Immutable values
-	setNameValue: function (name, value) {
-		// if this is confusing, check out the docs for Immutable JS
-		this.names = this.names.update(name, value);
-	},
+var myStore = new ImmutableStore({
+    init: function () { // do stuff },
+    public: {
+        // Public methods
+    }
+    private: {
+        // Update private, Immutable values
+        setNameValue: function (id, name) {
+            // if this is confusing, check out the docs for Immutable JS
+            this.names = this.names.set(id, name);
+        }
+    }
+});
 
-	// Update private, primitive values
-	setAge: function (newAge) {
-		this.age = Number(newAge);
-	}
-}
+myStore.setNameValue(5, 'Crank Shot'); // undefined is not a function
+// Quit trying to access private methods!
+
 ```
 
-#### Initialization
-The `init` function is used to set up initial store state, as well as bind
-private store functions to handle dispatched actions using `this.bindActions`.
-
-```js
-init: function () {
-	var Immutable = ImmutableStore.Immutable;
-	this.names = Immutable.Map({jake: '1', scott: '0'});
-}
-```
-#### Binding actions
+### Binding actions
 The ImmutableStore lets you easily handle dispatched actions without any messy
 switch statement. Just pass `bindActions` pairs of constants (either action
 types or action sources) and private store functions to handle them.
 
 ```js
-init: function () {
-	this.bindActions(
-		SOME_ACTION_TYPE, this.coolPrivateStoreMethod,
-		OTHER_ACTION_TYPE, this.coolerPrivateStoreMethod,
-		AN_ACTION_SOURCE, this.coolestPrivateStoreMethod
-	);
-}
+var myStore = new ImmutableStore({
+    init: function () {
+        this.names = Immutable.Map();
+
+        // Map action methods to private methods.
+        this.bindActions(
+            'SET_NAME_VALUE', this.setNameValue
+        );
+    },
+    public: {
+        // Public methods
+    }
+    private: {
+        // Update private, Immutable values
+        setNameValue: function (id, name) {
+            // if this is confusing, check out the docs for Immutable JS
+            this.names = this.names.set(id, name);
+        }
+    }
+});
 ```
 
-#### Waiting for other Stores
-You have access to `waitFor` inside your store which behaves sililarly to
+If you aren't quite sure how bindAction works, then please take a look
+at [Actions & Action Creators](/#/docs/action-creators).
+
+### Waiting for other Stores
+You have access to `waitFor` inside your store which behaves the same as
 `dispatcher.waitFor`.
 
 ```js
