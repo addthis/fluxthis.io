@@ -4,4 +4,4 @@ server.pid
 .DS_Store
 xunit.xml
 npm-debug.log
-public/js/bundle.js.map
+public/js/bundle*

@@ -18,7 +18,7 @@ The `TestUtils` object is only available when
 of these methods during your day to day development
 other than testing!
 
-### Store.TestUtils.mockDispatch(action)
+### TestUtils.mockDispatch(action)
 
 * {string} action.type - The action type of the action your wish to dispatch.
 * {string} action.source - The action source you wish to mock
@@ -33,7 +33,7 @@ Using this method you will only dispatch to the current store, so
 you no longer need to worry about sending payload parameters that
 other stores care about.
 
-### Store.TestUtils.reset()
+### TestUtils.reset()
 
 This method gives you the capability to reset a given store back to
 it's initial state after the init method was called the first time.
