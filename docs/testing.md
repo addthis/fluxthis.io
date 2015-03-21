@@ -42,3 +42,20 @@ This allows you to reset your Store across tests, so that it's in
 a known state at the start of a given Test. Typically, you would
 reset the store beforeEach unit test or after some subset of tests,
 so that you can set it up again.
+
+
+### ReactTestUtils - Setting Initial State
+
+You may be wondering, how do I set state when I'm using a testing tool
+like ReactTestUtils, jasmine or mocha. Well, we have an easy solution for you!
+
+```js
+var React = require('react');
+var ReactTestUtils = React.addons.TestUtils;
+
+// Lets setup initial state.
+var container = ReactTestUtils.renderIntoDocument(WidgetSettingsContainer({initialState: object}));
+```
+
+As you will notice in the above example, if you pass in a prop value of
+`initialState`, then FluxThis will use that prop value to set your state. 
