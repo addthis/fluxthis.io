@@ -39,10 +39,10 @@ export default React.createClass({
                         <li><Link to='development'>Development</Link></li>
                     </ul>
                 </div>
-                <div className='col-sm-8'>
+                <div className='col-sm-6'>
                     <RouteHandler {...this.props} />
                 </div>
-                <div className='col-sm-1'/>
+                <div className='col-sm-3'/>
             </div>
         );
     }

@@ -2,6 +2,8 @@
 
 const React = require('react');
 const Router = require('react-router');
+const $ = require('jquery');
+const hljs = require('highlight.js');
 
 const MARKDOWN_LOOKUP = {
     'about': require('about.md'),
@@ -23,6 +25,17 @@ const MARKDOWN_LOOKUP = {
 export default React.createClass({
     displayName: 'MarkdownComponent',
     mixins: [Router.State],
+    highlightCode() {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    },
+    componentDidMount() {
+        this.highlightCode();
+    },
+    componentDidUpdate() {
+        this.highlightCode();
+    },
     render() {
         const pathName = this.getPath();
         const fileName = pathName.substring(pathName.lastIndexOf('/') + 1);

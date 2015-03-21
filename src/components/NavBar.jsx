@@ -25,8 +25,8 @@ export default React.createClass({
                         <div id='navbar' className='navbar-collapse collapse'>
                             <ul className='nav navbar-nav navbar-right'>
                                 <li><Link to='about'>Documentation</Link></li>
-                                <li><a href='https://github.com/addthis/fluxthis/issues'>Support</a></li>
-                                <li><a href='https://github.com/addthis/fluxthis'>Github</a></li>
+                                <li><a target="_blank" href='https://github.com/addthis/fluxthis/issues'>Support</a></li>
+                                <li><a target="_blank" href='https://github.com/addthis/fluxthis'>Github</a></li>
                             </ul>
                         </div>
                     </div>
