@@ -14,7 +14,7 @@ console.log(SomeStore.TestUtils); // {object}
 
 **Important:**
 The `TestUtils` object is only available when
-`process.env.NODE_ENV !== 'production' so please do not rely on any
+`process.env.NODE_ENV !== 'production'` so please do not rely on any
 of these methods during your day to day development
 other than testing!
 
