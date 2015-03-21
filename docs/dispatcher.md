@@ -16,12 +16,41 @@ The dispatcher is the key to Flux. The FluxThis dispatcher is basically the same
 as Facebook's dispatcher, only a little more locked down. For example, all
 actions dispatched by the FluxThis dispatcher are deeply frozen with
 `Object.freeze` to protect them from mutation in store handlers. Our dispatcher
-also has a little bit extra to allow for rich debugging to the Flux cycle.
+also has a little bit extra to allow for rich
+[debugging](/#/docs/debugging) to the Flux cycle.
 
 Unless you're planning on extending our dispatcher, you won't ever need to
 require it. Every FluxThis component knows about the dispatcher singleton
 internally.
 
-However, if you're integrating FluxThis in to an existing project, you can
+## Integrate our dispatcher with your existing app
+
+If you're integrating FluxThis in to an existing project, you can
 require our dispatcher instance at `fluxthis/src/distpatcherInstance.js` and
 drop it in your code to replace your current dispatcher.
+
+So, instead of using the stand flux dispatcher like so,
+
+```javascript
+var Dispatcher = require('flux').Dispatcher;
+```
+
+You would instead do
+
+```javascript
+var Dispatcher = require('fluxthis/src/distpatcherInstance');
+```
+
+And that's it! You can start using our disptacher to get super sick
+[debugging](/#/docs/debugging).
+
+## Dispatcher.dispatch(Action)
+
+When you wish to dispatch an action to your Flux application, you will
+call this method, which has the same interface as the standard
+Flux dispatcher implementation.
+
+#### Action
+- `{string} source` **optional** - Source of an action to be used by a store
+- `{string} type` **required** - The type of the action.
+- `{object} payload` **required** - The action payload consumed by listening stores
