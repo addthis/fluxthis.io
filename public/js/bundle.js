@@ -9221,7 +9221,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(150)();
-	exports.push([module.id, "body,html {\n    background: #f5f5f5;\n}\n.navbar {\n    margin-bottom: 0px;\n    color: white;\n}\n.navbar.navbar-default, .navbar-brand, .active, .active > a, .nav > li > a {\n    background-color: #F7A66A !important;\n    border-color: #F7A66A;\n    color: white !important;\n}\n\n.active > a {\n    text-decoration: underline;\n}\n.markdown-body {\n    min-width: 200px;\n    max-width: 1000px;\n    margin: 0 auto;\n}\n@media (min-width: 768px) {\n    .navbar-right {\n        margin-right: 100px;\n    }\n    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header,\n    .container > .navbar-collapse, .container > .navbar-header {\n        margin-left: 200px;\n    }\n}\n", ""]);
+	exports.push([module.id, "body,html {\n    background: #f5f5f5;\n    overflow-x: hidden;\n}\n.navbar {\n    margin-bottom: 0px;\n    color: white;\n}\n.navbar.navbar-default, .navbar-brand, .active, .active > a, .nav > li > a {\n    background-color: #F7A66A !important;\n    border-color: #F7A66A;\n    color: white !important;\n}\n\n.active > a {\n    text-decoration: underline;\n}\n.markdown-body {\n    min-width: 200px;\n    max-width: 1000px;\n    margin: 0 auto;\n}\n@media (min-width: 768px) {\n    .navbar-right {\n        margin-right: 100px;\n    }\n    .container-fluid > .navbar-collapse, .container-fluid > .navbar-header,\n    .container > .navbar-collapse, .container > .navbar-header {\n        margin-left: 200px;\n    }\n}\n", ""]);
 
 /***/ },
 /* 86 */
