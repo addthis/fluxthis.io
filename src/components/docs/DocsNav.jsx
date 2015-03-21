@@ -20,38 +20,74 @@ const {Route, DefaultRoute, RouteHandler, Link} = Router;
 
 require('css/side-navbar.css');
 
+const navItems = [
+    [
+        {'about': 'About'},
+        {'quick-start': 'Quick Start'},
+        {'installation': 'Installation'},
+        {'examples': 'Examples'}
+    ],
+    [
+        {'dispatcher': 'Dispatcher'},
+        {'controller-views': 'Controller Views'},
+        {'stores': 'Immutable Stores'},
+        {'action-creators': 'Action Creators'},
+        {'constant-collections': 'Constant Collections'}
+    ],
+    [
+        {'debugging': 'Debugging'},
+        {'testing': 'Test Utilities'},
+        {'invariants': 'Invariants'}
+    ],
+    [
+        {'development': 'Development'}
+    ]
+];
+
 export default React.createClass({
     displayName: 'DocsNav',
     mixins: [Router.State],
+    getRouteLinks() {
+        let result = [];
+        let path = this.getPath();
+        let currentRoute = path.substring(path.lastIndexOf('/') + 1);
+
+        for (var navBlockIndex in navItems) {
+            let navBlock = navItems[navBlockIndex];
+
+            if (+navBlockIndex !== 0 &&
+                +navBlockIndex !== navItems.length - 1) {
+
+                result.push(
+                    <li className="divider"></li>
+                );
+            }
+            for (var navItemIndex in navBlock) {
+                let navItem = navBlock[navItemIndex];
+                let route = Object.keys(navItem)[0];
+
+                result.push(
+                    <li>
+                        <Link
+                            className={currentRoute === route ? 'active': ''}
+                            to={route}
+                        >
+                            {navItem[route]}
+                        </Link>
+                    </li>
+                );
+            }
+        }
+        return result;
+    },
     render() {
+
         return (
             <div className='row docs-container'>
                 <div className='col-sm-1'/>
                 <div className='col-sm-2'>
                     <ul id='sidebar' className='nav nav-stacked'>
-
-                        <li><Link to='about'>About</Link></li>
-                        <li><Link to='quick-start'>Quick Start</Link></li>
-                        <li><Link to='installation'>Installation</Link></li>
-                        <li><Link to='examples'>Examples</Link></li>
-
-                        <li className="divider"></li>
-
-                        <li><Link to='dispatcher'>Dispatcher</Link></li>
-                        <li><Link to='controller-views'>Controller Views</Link></li>
-                        <li><Link to='stores'>Immutable Stores</Link></li>
-                        <li><Link to='action-creators'>Action Creators</Link></li>
-                        <li><Link to='constant-collections'>Constant Collections</Link></li>
-
-                        <li className="divider"></li>
-
-                        <li><Link to='debugging'>Debugging</Link></li>
-                        <li><Link to='testing'>Test Utilities</Link></li>
-                        <li><Link to='invariants'>Invariants Explained</Link></li>
-
-                        <li className="divider"></li>
-
-                        <li><Link to='development'>Development</Link></li>
+                        {this.getRouteLinks()}
                     </ul>
                 </div>
                 <div className='col-sm-6'>

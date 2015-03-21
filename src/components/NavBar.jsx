@@ -28,7 +28,7 @@ export default React.createClass({
         // since we have it shown in big ole letters.
         let navbarBrand = this.getPath() === '/' ? null :
             (<a className='navbar-brand' href='#'>FluxThis</a>);
-        let isDocsPage = this.getPath() === '/docs';
+        let isDocsPage = this.getPath().startsWith('/docs');
 
         return  (
             <div>

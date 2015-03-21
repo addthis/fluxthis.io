@@ -28,6 +28,9 @@ body,html {
 a.active{
     text-decoration: underline;
 }
+li.test > a {
+    text-decoration: underline;
+}
 .markdown-body {
     min-width: 200px;
     max-width: 1000px;
