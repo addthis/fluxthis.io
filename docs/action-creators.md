@@ -28,13 +28,14 @@ easier for new engineering team members to understand.
 
 ### Requiring
 
-You can require the store individually, with some type of es6 loader:
+You can require the action creator individually; however,
+ this will require an es6 loader:
 
 ```js
 var ActionCreator = require('fluxthis/src/ActionCreator');
 ```
 
-or you can require a built version of the store that doesn't need es6
+or you can require a built version of the action creator that doesn't need es6
 compilation.
 
 ```js
