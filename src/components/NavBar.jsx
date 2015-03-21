@@ -22,7 +22,14 @@ require('css/navbar.css');
 
 export default React.createClass({
     displayName: 'MainPage',
+    mixins: [Router.State],
     render() {
+        // Don't show the navbar brand on the home page
+        // since we have it shown in big ole letters.
+        let navbarBrand = this.getPath() === '/' ? null :
+            (<a className='navbar-brand' href='#'>FluxThis</a>);
+        let isDocsPage = this.getPath() === '/docs';
+
         return  (
             <div>
                 <nav className='navbar navbar-default'>
@@ -34,11 +41,11 @@ export default React.createClass({
                                 <span className='icon-bar'></span>
                                 <span className='icon-bar'></span>
                             </button>
-                            <a className='navbar-brand' href='#'>FluxThis</a>
+                            {navbarBrand}
                         </div>
                         <div id='navbar' className='navbar-collapse collapse'>
                             <ul className='nav navbar-nav navbar-right'>
-                                <li><Link to='about'>Documentation</Link></li>
+                                <li><Link className={isDocsPage ? 'active' : ''} to='about'>Documentation</Link></li>
                                 <li><a target="_blank" href='https://github.com/addthis/fluxthis/issues'>Support</a></li>
                                 <li><a target="_blank" href='https://github.com/addthis/fluxthis'>Github</a></li>
                             </ul>

@@ -18,12 +18,14 @@ body,html {
     color: white;
 }
 .navbar.navbar-default, .navbar-brand, .active, .active > a, .nav > li > a {
-    background-color: #F7A66A !important;
-    border-color: #F7A66A;
+    background-color: #FF5C3E !important;
+    border-color: #FF5C3E;
     color: white !important;
 }
-
-.active > a {
+.nav > li > a:hover {
+    text-decoration: underline;
+}
+a.active{
     text-decoration: underline;
 }
 .markdown-body {

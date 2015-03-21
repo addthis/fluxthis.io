@@ -18,6 +18,9 @@ const React = require('react');
 const Router = require('react-router');
 const routes = require('router/routes');
 
+window.jQuery = require('jquery');
+window.$ = window.jQuery;
+
 require('quick-start.md');
 
 if (process.env.NODE_ENV !== 'production') {
