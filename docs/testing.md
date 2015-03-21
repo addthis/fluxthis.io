@@ -1,4 +1,4 @@
-# Test Utils
+# Test Utilities
 
 We love testing and we are sure you love testing, so we
 decided that testing should be an important part of FluxThis.

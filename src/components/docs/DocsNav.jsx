@@ -37,15 +37,16 @@ export default React.createClass({
 
                         <li className="divider"></li>
 
+                        <li><Link to='dispatcher'>Dispatcher</Link></li>
                         <li><Link to='controller-views'>Controller Views</Link></li>
-                        <li><Link to='stores'>Stores</Link></li>
+                        <li><Link to='stores'>Immutable Stores</Link></li>
                         <li><Link to='action-creators'>Action Creators</Link></li>
                         <li><Link to='constant-collections'>Constant Collections</Link></li>
 
                         <li className="divider"></li>
 
-                        <li><Link to='debugging'>Debugging</Link></li>
-                        <li><Link to='testing'>Test Utils</Link></li>
+                        <li><Link to='dispatcher'>Debugging</Link></li>
+                        <li><Link to='testing'>Test Utilities</Link></li>
                         <li><Link to='invariants'>Invariants Explained</Link></li>
 
                         <li className="divider"></li>

@@ -35,6 +35,7 @@ export default (
             <Route name='installation' handler={MarkdownComponent}/>
             <Route name='examples' handler={MarkdownComponent}/>
 
+            <Route name='dispatcher' handler={MarkdownComponent}/>
             <Route name='controller-views' handler={MarkdownComponent}/>
             <Route name='stores' handler={MarkdownComponent}/>
             <Route name='action-creators' handler={MarkdownComponent}/>

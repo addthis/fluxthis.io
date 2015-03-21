@@ -3,8 +3,9 @@
 
 1. Enforce Flux design patterns
 2. Make debugging extremely easy
-3. Reduce boilerplate and create simple modular apis
-4. Allow individual modules to be used standalone
+3. Make testing a breeze
+4. Reduce boilerplate and create simple modular APIs
+5. Allow individual modules to be used standalone
 
 ## Motivation
 

@@ -24,6 +24,7 @@ const MARKDOWN_LOOKUP = {
     'quick-start': require('quick-start.md'),
     'installation': require('installation.md'),
 
+    'dispatcher': require('dispatcher.md'),
     'controller-views': require('controller-views.md'),
     'stores': require('stores.md'),
     'action-creators': require('action-creators.md'),
