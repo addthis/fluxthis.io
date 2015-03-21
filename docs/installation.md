@@ -1,3 +1,4 @@
 # Installation
 
-work in progress...
+Install from npm:
+`npm install fluxthis --save`

@@ -45,7 +45,7 @@ export default React.createClass({
 
                         <li className="divider"></li>
 
-                        <li><Link to='dispatcher'>Debugging</Link></li>
+                        <li><Link to='debugging'>Debugging</Link></li>
                         <li><Link to='testing'>Test Utilities</Link></li>
                         <li><Link to='invariants'>Invariants Explained</Link></li>
 

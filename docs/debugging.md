@@ -1,6 +1,5 @@
 # Debugging
 
-## Debugging
 The default debugging values are shown below:
 
 ```js
