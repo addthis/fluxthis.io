@@ -37,7 +37,7 @@ const navItems = [
     [
         {'debugging': 'Debugging'},
         {'testing': 'Test Utilities'},
-        {'invariants': 'Invariants'}
+        {'invariants': 'Common Errors'}
     ],
     [
         {'development': 'Development'}
