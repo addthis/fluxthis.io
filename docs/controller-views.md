@@ -66,8 +66,7 @@ called (their purpose is changing data).
 
 #### getInitialState()
 
-**Note: ** When using this mixin you should **not** use this lifecycle method.
-
-Any initial state should be setup in `getStateFromStores` as FluxThis will
-call this method.
+**Note: ** When you are using this mixin you need to ensure that you are not
+setting the same key's in `getInitialState` & `getStateFromStores`;
+otherwise, you will run into errors being thrown in React. 
 

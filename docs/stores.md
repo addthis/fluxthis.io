@@ -90,7 +90,7 @@ var myStore = new ImmutableStore({
 You can require the store individually, with some type of es6 loader:
 
 ```js
-var ImmutableStore = require('fluxthis/src/ImmutableStore');
+var ImmutableStore = require('fluxthis/src/ImmutableStore.es6');
 ```
 
 or you can require a built version of the store that doesn't need es6

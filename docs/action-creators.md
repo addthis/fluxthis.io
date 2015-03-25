@@ -32,7 +32,7 @@ You can require the action creator individually; however,
  this will require an es6 loader:
 
 ```js
-var ActionCreator = require('fluxthis/src/ActionCreator');
+var ActionCreator = require('fluxthis/src/ActionCreator.es6');
 ```
 
 or you can require a built version of the action creator that doesn't need es6
