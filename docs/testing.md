@@ -33,7 +33,7 @@ Using this method you will only dispatch to the current store, so
 you no longer need to worry about sending payload parameters that
 other stores care about.
 
-### TestUtils.mockPublicMethod(object)
+### TestUtils.mockPublicMethods(object)
 
 This method provides you can easy way to mock public methods without screwing
 up aliasing or access to private variables. Mocked public methods still
@@ -68,6 +68,12 @@ Store.TestUtils.reset(); // See below
 
 console.log(Store.getFoo()); // bar
 ```
+
+### TestUtils.resetMockedPublicMethods()
+
+This method will reset any mocked public methods. It will not reset
+any private variables that may have changed, so if you wish to reset
+both, then please checkout `TestUtils.reset()`.
 
 ### TestUtils.reset()
 
