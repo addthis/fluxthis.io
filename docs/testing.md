@@ -33,6 +33,42 @@ Using this method you will only dispatch to the current store, so
 you no longer need to worry about sending payload parameters that
 other stores care about.
 
+### TestUtils.mockPublicMethod(object)
+
+This method provides you can easy way to mock public methods without screwing
+up aliasing or access to private variables. Mocked public methods still
+have access to all public and private methods/variables.
+
+Here is an example:
+
+```javascript
+var Store = new ImmutableStore({
+    init: function () {
+        this.foo = 'bar';
+    },
+    private: {},
+    public: {
+        getFoo: function () {
+            return this.foo;
+        }
+    },
+});
+
+console.log(Store.getFoo()); // bar
+
+Store.TestUtils.mockPublicMethods({
+    getFoo: function () {
+        return 'yay testing';
+    }
+});
+
+console.log(Store.getFoo()); // yay testing
+
+Store.TestUtils.reset(); // See below
+
+console.log(Store.getFoo()); // bar
+```
+
 ### TestUtils.reset()
 
 This method gives you the capability to reset a given store back to
