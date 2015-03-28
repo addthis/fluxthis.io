@@ -19,7 +19,9 @@ console.log(ACTION_TYPES.EXAMPLE === CONTRIVED.EXAMPLE;) //false!
 Use them for action types, action sources, or anything else requiring constants with no particular value.
 
 ##Constructing
-`var constants = new ConstantCollection(String... )`
+```js
+var constants = new ConstantCollection(String... )
+```
 
 ### String...
  - A list of strings, which will be used to name the constants
