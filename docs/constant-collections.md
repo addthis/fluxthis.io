@@ -26,7 +26,7 @@ var constants = new ConstantCollection(String... )
 ### String...
  - A list of strings, which will be used to name the constants
 
-### API
+### Constant API
 From a constant, you can access the constant's human-readable name via `CONSTANT.name`, and its collection via `CONSTANT.collection`.
 
 ```js
