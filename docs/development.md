@@ -56,14 +56,6 @@ This section will only be for those select few with publishing power.
 
 1. **Ensure you are on origin/master**
 2. Increment the version number in `package.json`.
-3. You will need to run the two following commands:
-
-        gulp publish
-
-        npm publish
-
-    * `gulp publish` will run the automated tests, build dev & production version
-of the code & then tag master.
-    * `npm publish` will publish your code to the world.
+3. Run `gulp publish` to built, test, tag, and publish to npm.
 4. Go grab a beer.
 
