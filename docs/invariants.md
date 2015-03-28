@@ -49,3 +49,14 @@ invariant(
 );
 ```
 Somehow you managed to dispatch a payload which caused JSON.stringify to barf. Hats off to you! We're kind of on the fence about this restriction (someone might want to dispatch immutables directly, which would error out here), so give us some feedback if you don't like it.
+
+```js
+invariant(
+  JSON.stringify(action) === serializedAction,
+  `An action dispatched by the FluxThis dispatcher was
+  mutated. This is bad. Please check the handlers for
+  ${action.source} ${action.type}`
+);
+```
+**WARNING**: you dispatched something, and then CHANGED that something. This practice will lead to horrible, uncontrollable, hard-to-track-down bugs, as stores receive modified payloads that they don't understand. Don't do it!.
+
