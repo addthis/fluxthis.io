@@ -33,6 +33,7 @@ const navItems = [
         {'immutable-stores': 'Immutable Stores'},
         {'oo-stores': 'Non-Immutable Stores'},
         {'action-creators': 'Action Creators'},
+        {'api-action-creators': 'API Action Creators'},
         {'constant-collections': 'Constant Collections'}
     ],
     [

@@ -37,6 +37,7 @@ export default (
             <Route name='immutable-stores' handler={MarkdownComponent}/>
             <Route name='oo-stores' handler={MarkdownComponent}/>
             <Route name='action-creators' handler={MarkdownComponent}/>
+            <Route name='api-action-creators' handler={MarkdownComponent}/>
             <Route name='constant-collections' handler={MarkdownComponent}/>
 
             <Route name='debugging' handler={MarkdownComponent}/>
