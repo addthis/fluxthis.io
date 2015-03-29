@@ -34,7 +34,8 @@ export default (
 
             <Route name='dispatcher' handler={MarkdownComponent}/>
             <Route name='controller-views' handler={MarkdownComponent}/>
-            <Route name='stores' handler={MarkdownComponent}/>
+            <Route name='immutable-stores' handler={MarkdownComponent}/>
+            <Route name='oo-stores' handler={MarkdownComponent}/>
             <Route name='action-creators' handler={MarkdownComponent}/>
             <Route name='constant-collections' handler={MarkdownComponent}/>
 

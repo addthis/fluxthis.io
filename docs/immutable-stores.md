@@ -17,7 +17,8 @@ particular domain within the application.
 
 
 Within FluxThis, we follow the same philosophy; however,
-we add some restrictions to a generic store.
+with the Immutable Store we add some restrictions to help
+reduce code smell.
 
 ## Immutability Built-in
 
@@ -106,7 +107,7 @@ var myStore = new ImmutableStore(options);
 ```
 
 #### Options
-- `displayName` Human readable name for debugging *optional*
+- `displayName` Human readable name for debugging *required*
 - `private` An object of private methods used to update store data *required*
 - `public` An object of public methods used to access store data *required*
 - `init` A function which is called at the creation of the store. Used to set up
@@ -126,7 +127,7 @@ var Immutable = ImmutableStore.Immutable;
 // Create your new store!
 var myStore = new ImmutableStore({
     init: function () {
-    	this.names = Immutable.Map({0: 'Jake Scott', {1: 'Josh Horwitz'}});
+    	this.names = Immutable.Map({0: 'Jake Scott', 1: 'Josh Horwitz'});
     }
 });
 ```

@@ -50,8 +50,8 @@ var myActionCreator = new ActionCreator(options);
 ```
 
 #### Options
-- `displayName` Human readable name for debugging **optional**
-- `actionSource` Source string so that stores know who the action originated from **optional**
+- `displayName` Human readable name for debugging **required**
+- `actionSource` Source string so that stores know who the action originated from **required**
 
 ## ActionCreator Example
 

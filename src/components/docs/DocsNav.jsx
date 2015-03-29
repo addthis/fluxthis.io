@@ -24,13 +24,14 @@ const navItems = [
     [
         {'about': 'About'},
         //{'quick-start': 'Quick Start'},
-        {'installation': 'Installation'},
-       // {'examples': 'Examples'}
+        {'installation': 'Installation'}
+        //{'examples': 'Examples'}
     ],
     [
         {'dispatcher': 'Dispatcher'},
         {'controller-views': 'Controller Views'},
-        {'stores': 'Immutable Stores'},
+        {'immutable-stores': 'Immutable Stores'},
+        {'oo-stores': 'Non-Immutable Stores'},
         {'action-creators': 'Action Creators'},
         {'constant-collections': 'Constant Collections'}
     ],
