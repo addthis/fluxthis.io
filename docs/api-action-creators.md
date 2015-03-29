@@ -26,7 +26,7 @@ var APIActionCreator = require('fluxthis').APIActionCreator;
 ### Constructing
 
 ```js
-var myActionCreator = new ActionCreator(options);
+var myAPIActionCreator = new APIActionCreator(options);
 ```
 
 #### Options
