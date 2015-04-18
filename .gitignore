@@ -1,0 +1,7 @@
+node_modules/*
+.idea
+server.pid
+.DS_Store
+xunit.xml
+npm-debug.log
+public/js/bundle*
