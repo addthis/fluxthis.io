@@ -148,7 +148,7 @@ var myStore = new ImmutableStore({
     public: {
         // returning primitive values are OK.
         getName: function (id) {
-            return this.names.get(0);
+            return this.names.get(id);
         },
 
         // WRONG
@@ -165,7 +165,7 @@ var myStore = new ImmutableStore({
     }
 });
 
-console.log(myStore.getName()); // "Jake Scott"
+console.log(myStore.getName(0)); // "Jake Scott"
 
 console.log(myStore.getNamesWrong()); // Error thrown
 
