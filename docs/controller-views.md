@@ -46,8 +46,8 @@ var MyView = React.createClass({
 		return {a: 0, b: 1};
 	},
 	getInitialState() {
-	    // DON'T USE THIS METHOD.
-	    // Use getStateFromStores
+	    // Use this for state not set by stores
+	    // Use getStateFromStores for state determined by stores
 	},
 	render: function () {
 		// return some jsx goodness
@@ -65,6 +65,9 @@ the built-in stores, change events are fired any time a private function is
 called (their purpose is changing data).
 
 #### getInitialState()
+
+This life-cycle method should be used when you have internal state
+to the component that is not set by state from the store. 
 
 **Note: ** When you are using this mixin you need to ensure that you are not
 setting the same key's in `getInitialState` & `getStateFromStores`;
