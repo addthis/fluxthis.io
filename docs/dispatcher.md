@@ -38,10 +38,10 @@ var Dispatcher = require('flux').Dispatcher;
 You would instead do
 
 ```javascript
-var Dispatcher = require('fluxthis/src/distpatcherInstance.es6');
+var Dispatcher = require('fluxthis/src/dispatcherInstance.es6');
 ```
 
-And that's it! You can start using our disptacher to get super sick
+And that's it! You can start using our dispatcher to get super sick
 [debugging](/#/docs/debugging).
 
 ## Dispatcher.dispatch(Action)
