@@ -12,10 +12,11 @@ in the application receive the action via the callbacks in the registry.
 
 ## How we handle and view the dispatcher
 
-The dispatcher is the key to Flux. The FluxThis dispatcher is basically the same
-as Facebook's dispatcher, only a little more locked down. For example, all
-actions dispatched by the FluxThis dispatcher are deeply frozen with
-`Object.freeze` to protect them from mutation in store handlers. Our dispatcher
+The dispatcher is key to Flux. The FluxThis dispatcher operates on the same
+principles of the Facebook dispatcher; however, due to FluxThis' implementation
+we were able to add optimizations, debugging & enforce Flux principles. 
+For example, all actions dispatched by the FluxThis dispatcher are
+ checked post-dispatch to ensure nothing was modified. Our dispatcher
 also has a little bit extra to allow for rich
 [debugging](/#/docs/debugging) to the Flux cycle.
 
@@ -26,7 +27,7 @@ internally.
 ## Integrate our dispatcher with your existing app
 
 If you're integrating FluxThis in to an existing project, you can
-require our dispatcher instance at `fluxthis/src/distpatcherInstance.js` and
+require our dispatcher instance at `fluxthis/src/dispatcherInstance.js` and
 drop it in your code to replace your current dispatcher.
 
 So, instead of using the stand flux dispatcher like so,
@@ -54,3 +55,13 @@ Flux dispatcher implementation.
 - `{string} source` **optional** - Source of an action to be used by a store
 - `{string} type` **required** - The type of the action.
 - `{object} payload` **required** - The action payload consumed by listening stores
+
+```javascript
+
+dispatcher.dispatch({
+    type: 'ADD_THING',
+    payload: {
+        thing: 'thing 1'
+    }
+});
+```
