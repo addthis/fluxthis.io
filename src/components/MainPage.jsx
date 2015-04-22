@@ -35,7 +35,7 @@ export default React.createClass({
                         </p>
                         <p className={'lead get-started-btn'}>
                             <Link
-                                to='about'
+                                to='quick-start'
                                 className='btn btn-outline-inverse btn-lg'>
                                 Get Started
                             </Link>
@@ -48,7 +48,7 @@ export default React.createClass({
 
                 <p className={'lead get-started-btn-bottom'}>
                     <Link
-                        to='about'
+                        to='quick-start'
                         className='btn btn-outline-inverse btn-lg'>
                         Get Started
                     </Link>

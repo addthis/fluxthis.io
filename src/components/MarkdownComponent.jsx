@@ -21,8 +21,8 @@ const hljs = require('highlight.js');
 
 const MARKDOWN_LOOKUP = {
     'about': require('about.md'),
-    'quick-start': require('quick-start.md'),
     'installation': require('installation.md'),
+    'quick-start': require('quick-start.md'),
 
     'dispatcher': require('dispatcher.md'),
     'controller-views': require('controller-views.md'),
