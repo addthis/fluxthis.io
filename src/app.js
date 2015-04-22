@@ -27,6 +27,13 @@ if (process.env.NODE_ENV !== 'production') {
     window.React = React;
 }
 
-Router.run(routes, Handler => {
+Router.run(routes, (Handler, options) => {
+    setTimeout(() => {
+        ga('send', 'pageview', {
+            'location': options.path,
+            'title': document.title
+        });
+    }, 0);
+
     React.render(<Handler />, document.getElementById('root'));
 });

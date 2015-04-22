@@ -39,6 +39,26 @@ const MARKDOWN_LOOKUP = {
     'development': require('development.md')
 };
 
+const TITLE_LOOKUP = {
+    'about': 'About',
+    'quick-start': 'Quick Start',
+    'installation': 'Installation',
+
+    'dispatcher': 'Dispatcher',
+    'controller-views': 'Controller Views',
+    'immutable-stores': 'Immutable Stores',
+    'oo-stores': 'Non-Immutable Stores',
+    'action-creators': 'Action Creators',
+    'api-action-creators': 'API Action Creators',
+    'constant-collections': 'Constant Collections',
+
+    'debugging': 'Debugging',
+    'testing': 'Testing',
+    'invariants': 'Invariants',
+
+    'development': 'Development'
+};
+
 export default React.createClass({
     displayName: 'MarkdownComponent',
     mixins: [Router.State],
@@ -58,6 +78,7 @@ export default React.createClass({
         const fileName = pathName.substring(pathName.lastIndexOf('/') + 1);
 
         const html = MARKDOWN_LOOKUP[fileName];
+        document.title = 'FluxThis | ' + TITLE_LOOKUP[fileName];
 
         return (
             <div dangerouslySetInnerHTML={{__html: html}}
