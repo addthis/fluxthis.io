@@ -25,6 +25,8 @@ require('css/main.css');
 export default React.createClass({
     displayName: '',
     render() {
+        document.title = 'FluxThis';
+
         return (
             <div>
                 <section className={'jumbotron'}>

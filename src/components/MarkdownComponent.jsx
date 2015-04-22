@@ -21,8 +21,9 @@ const hljs = require('highlight.js');
 
 const MARKDOWN_LOOKUP = {
     'about': require('about.md'),
-    'installation': require('installation.md'),
+
     'quick-start': require('quick-start.md'),
+    'installation': require('installation.md'),
 
     'dispatcher': require('dispatcher.md'),
     'controller-views': require('controller-views.md'),
@@ -37,6 +38,26 @@ const MARKDOWN_LOOKUP = {
     'invariants': require('invariants.md'),
 
     'development': require('development.md')
+};
+
+const TITLE_LOOKUP = {
+    'about': 'About',
+    'quick-start': 'Quick Start',
+    'installation': 'Installation',
+
+    'dispatcher': 'Dispatcher',
+    'controller-views': 'Controller Views',
+    'immutable-stores': 'Immutable Stores',
+    'oo-stores': 'Non-Immutable Stores',
+    'action-creators': 'Action Creators',
+    'api-action-creators': 'API Action Creators',
+    'constant-collections': 'Constant Collections',
+
+    'debugging': 'Debugging',
+    'testing': 'Testing',
+    'invariants': 'Invariants',
+
+    'development': 'Development'
 };
 
 export default React.createClass({
@@ -58,6 +79,8 @@ export default React.createClass({
         const fileName = pathName.substring(pathName.lastIndexOf('/') + 1);
 
         const html = MARKDOWN_LOOKUP[fileName];
+        document.title = 'FluxThis | ' + TITLE_LOOKUP[fileName];
+
 
         return (
             <div dangerouslySetInnerHTML={{__html: html}}

@@ -1,7 +1,8 @@
 # Quick Start
+
 This guide will get you up to speed in developing applications using FluxThis. It is 
 designed for people who already know about both React and Flux. Having a knowledge of
-facebook's ImmutableJS library is not required, but is helpful.
+Facebook's ImmutableJS library is not required, but is helpful.
 
 ## Setting up the Quick Start Environment
 First, set a wonderful project environment using the quick start project on NPM:
@@ -25,7 +26,7 @@ To kick off a build, just run `gulp watch`. This will build your file for develo
 run any unit tests you have written via a phantomjs server, and alert you to any build
 or test failures. 
 
-Take a minute to famliarize yourself with the folder structure.  Everything you'll be
+Take a minute to familiarize yourself with the folder structure.  Everything you'll be
 working on for this guide can be found in `src`.
 
 ## Walking through the tutorial
@@ -286,3 +287,4 @@ handleTodoRemoveClick (id) {
 ```
 
 And we're done! Your little flux application should be ready for testing. 
+

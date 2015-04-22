@@ -84,7 +84,7 @@ var myStore = new ObjectOrientedStore({
     }
 });
 
-console.log(myStore.getName()); // "Jake Scott"
+console.log(myStore.getName(0)); // "Jake Scott"
 
 console.log(myStore.getNames()) // Normal Object
 ```

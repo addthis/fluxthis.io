@@ -20,10 +20,9 @@ governing any significant section of the page.
 ## React Mixin
 
 FluxThis stores provide mixins to incorporate themselves into React classes.
-These mixins automatically subscript the view to changes from the store, and call
+These mixins automatically subscribe the view to changes from the store and
 pull in new state from the stores using `getStateFromStores`.
-
-To use the mixin, simply list all of the stores a view depends on in its `mixin`
+To use the mixin, simply list all of the stores a view depends on in its `mixins`
 property, and define `getStateFromStores` to access those stores and properly
 populate the view's state.
 
@@ -35,7 +34,7 @@ we suggest that you strongly limit your use of the mixin in child components.
 ```js
 var MyView = React.createClass({
 	displayName: 'MyView',
-	mixin: [StoreA.mixin, StoreB.mixin],
+	mixins: [StoreA.mixin, StoreB.mixin],
 	getStateFromStores: function () {
 		return {
 			name: StoreA.getName(),
@@ -46,8 +45,8 @@ var MyView = React.createClass({
 		return {a: 0, b: 1};
 	},
 	getInitialState() {
-	    // DON'T USE THIS METHOD.
-	    // Use getStateFromStores
+	    // Use this for state not set by stores
+	    // Use getStateFromStores for state determined by stores
 	},
 	render: function () {
 		// return some jsx goodness
@@ -64,7 +63,13 @@ This function will be called when any dependant store fires a change event. In
 the built-in stores, change events are fired any time a private function is
 called (their purpose is changing data).
 
+Don't worry if you chain private function calls, they will be batched
+and only cause the component to update once in a single dispatch.
+
 #### getInitialState()
+
+This life-cycle method should be used when you have internal state
+to the component that is not set by state from the store. 
 
 **Note: ** When you are using this mixin you need to ensure that you are not
 setting the same key's in `getInitialState` & `getStateFromStores`;
