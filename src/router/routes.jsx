@@ -31,6 +31,7 @@ export default (
         <Route name='docs' handler={DocsNav}>
             <Route name='about' handler={MarkdownComponent}/>
             <Route name='installation' handler={MarkdownComponent}/>
+            <Route name='quick-start' handler={MarkdownComponent}/>
 
             <Route name='dispatcher' handler={MarkdownComponent}/>
             <Route name='controller-views' handler={MarkdownComponent}/>
