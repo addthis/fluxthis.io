@@ -22,7 +22,6 @@ governing any significant section of the page.
 FluxThis stores provide mixins to incorporate themselves into React classes.
 These mixins automatically subscribe the view to changes from the store and
 pull in new state from the stores using `getStateFromStores`.
-
 To use the mixin, simply list all of the stores a view depends on in its `mixins`
 property, and define `getStateFromStores` to access those stores and properly
 populate the view's state.

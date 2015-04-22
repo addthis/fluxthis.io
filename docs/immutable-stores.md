@@ -140,7 +140,11 @@ To keep you honest, public methods of an `ImmutableStore` will throw errors if
 they return any value which is not primitive or Immutable. 
 The reason plain objects are not allowed to be returned is because
 if you modify that object, then you modify the store and violate flux
+<<<<<<< HEAD
+principles of 1 direction flow.
+=======
 principles of unidirectional flow.
+>>>>>>> origin/master
 
 ```javascript
 var myStore = new ImmutableStore({

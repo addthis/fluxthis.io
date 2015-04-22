@@ -23,7 +23,7 @@ require('css/side-navbar.css');
 const navItems = [
     [
         {'about': 'About'},
-        //{'quick-start': 'Quick Start'},
+        {'quick-start': 'Quick Start'},
         {'installation': 'Installation'}
         //{'examples': 'Examples'}
     ],

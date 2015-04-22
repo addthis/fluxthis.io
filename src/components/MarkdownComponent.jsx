@@ -21,6 +21,7 @@ const hljs = require('highlight.js');
 
 const MARKDOWN_LOOKUP = {
     'about': require('about.md'),
+
     'quick-start': require('quick-start.md'),
     'installation': require('installation.md'),
 
@@ -79,6 +80,7 @@ export default React.createClass({
 
         const html = MARKDOWN_LOOKUP[fileName];
         document.title = 'FluxThis | ' + TITLE_LOOKUP[fileName];
+
 
         return (
             <div dangerouslySetInnerHTML={{__html: html}}

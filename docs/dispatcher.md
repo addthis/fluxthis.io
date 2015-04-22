@@ -17,6 +17,7 @@ principles of the Facebook dispatcher; however, due to FluxThis' implementation
 we were able to add optimizations, debugging & enforce Flux principles. 
 For example, all actions dispatched by the FluxThis dispatcher are
  checked post-dispatch to ensure nothing was modified. Our dispatcher
+
 also has a little bit extra to allow for rich
 [debugging](/#/docs/debugging) to the Flux cycle.
 
@@ -56,6 +57,7 @@ Flux dispatcher implementation.
 - `{string} type` **required** - The type of the action.
 - `{object} payload` **required** - The action payload consumed by listening stores
 
+
 ```javascript
 
 dispatcher.dispatch({
@@ -65,3 +67,4 @@ dispatcher.dispatch({
     }
 });
 ```
+
