@@ -140,7 +140,7 @@ To keep you honest, public methods of an `ImmutableStore` will throw errors if
 they return any value which is not primitive or Immutable. 
 The reason plain objects are not allowed to be returned is because
 if you modify that object, then you modify the store and violate flux
-principles of 1 direction flow.
+principles of unidirectional flow.
 
 ```javascript
 var myStore = new ImmutableStore({
@@ -202,6 +202,10 @@ myStore.setNameValue(5, 'Crank Shot'); // undefined is not a function
 The ImmutableStore lets you easily handle dispatched actions without any messy
 switch statement. Just pass `bindActions` pairs of constants (either action
 types or action sources) and private store functions to handle them.
+
+Using bindActions over traditional switch statements also allows FluxThis
+to optimize dispatches by sending them to only stores that registered
+the disaptched action.
 
 ```js
 var myStore = new ImmutableStore({
