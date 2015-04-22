@@ -26,8 +26,10 @@ const MARKDOWN_LOOKUP = {
 
     'dispatcher': require('dispatcher.md'),
     'controller-views': require('controller-views.md'),
-    'stores': require('stores.md'),
+    'immutable-stores': require('immutable-stores.md'),
+    'oo-stores': require('oo-stores.md'),
     'action-creators': require('action-creators.md'),
+    'api-action-creators': require('api-action-creators.md'),
     'constant-collections': require('constant-collections.md'),
 
     'debugging': require('debugging.md'),

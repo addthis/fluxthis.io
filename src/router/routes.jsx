@@ -30,15 +30,14 @@ export default (
 
         <Route name='docs' handler={DocsNav}>
             <Route name='about' handler={MarkdownComponent}/>
-
-            <Route name='quick-start' handler={MarkdownComponent}/>
             <Route name='installation' handler={MarkdownComponent}/>
-            <Route name='examples' handler={MarkdownComponent}/>
 
             <Route name='dispatcher' handler={MarkdownComponent}/>
             <Route name='controller-views' handler={MarkdownComponent}/>
-            <Route name='stores' handler={MarkdownComponent}/>
+            <Route name='immutable-stores' handler={MarkdownComponent}/>
+            <Route name='oo-stores' handler={MarkdownComponent}/>
             <Route name='action-creators' handler={MarkdownComponent}/>
+            <Route name='api-action-creators' handler={MarkdownComponent}/>
             <Route name='constant-collections' handler={MarkdownComponent}/>
 
             <Route name='debugging' handler={MarkdownComponent}/>

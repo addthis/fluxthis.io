@@ -21,6 +21,18 @@ convention, and conventions are easy to break. FluxThis takes the pattern and
 turns it into a super-strict framework, to help large teams of devs avoid bad
 practices, and write sustainable, bug-free code.
 
+We use FluxThis in production across multiple teams and have found that
+these imposes restrictions on convention truly does help reduce code smell,
+and increase productivity and quality.
+
+## Migration (made easy)
+
+We realize that most of the people using Flux are using Facebook's dispatcher boilerplate code,
+which we were using prior to FluxThis. Because of this, we made sure that FluxThis was completely
+backwards compatible for easy transitions. All you need to do is simply drop in our
+[dispatcher](/#/docs/dispatcher) and you are good to go! Sadly however, you will not reap
+all the benefits of debugging and testing until your migrate your application to FluxThis
+fully.
 
 ## Flux
 

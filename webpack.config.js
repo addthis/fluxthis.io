@@ -1,5 +1,7 @@
 'use strict';
 
+var webpack = require('webpack');
+
 module.exports = {
     entry: './src/app.js',
     output: {
@@ -15,6 +17,13 @@ module.exports = {
             'public'
         ]
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+            }
+        })
+    ],
     module: {
         loaders: [
             { test: /\.css$/, loader: 'style?-singleton!css'},

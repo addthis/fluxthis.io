@@ -23,15 +23,17 @@ require('css/side-navbar.css');
 const navItems = [
     [
         {'about': 'About'},
-        {'quick-start': 'Quick Start'},
-        {'installation': 'Installation'},
-        {'examples': 'Examples'}
+        //{'quick-start': 'Quick Start'},
+        {'installation': 'Installation'}
+        //{'examples': 'Examples'}
     ],
     [
         {'dispatcher': 'Dispatcher'},
         {'controller-views': 'Controller Views'},
-        {'stores': 'Immutable Stores'},
+        {'immutable-stores': 'Immutable Stores'},
+        {'oo-stores': 'Non-Immutable Stores'},
         {'action-creators': 'Action Creators'},
+        {'api-action-creators': 'API Action Creators'},
         {'constant-collections': 'Constant Collections'}
     ],
     [
