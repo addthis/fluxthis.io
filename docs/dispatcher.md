@@ -16,12 +16,12 @@ The dispatcher is key to Flux. The FluxThis dispatcher operates on the same
 principles of the Facebook dispatcher; however, due to FluxThis' implementation
 we were able to add optimizations, debugging & enforce Flux principles. 
 For example, all actions dispatched by the FluxThis dispatcher are
- checked post-dispatch to ensure nothing was modified. Our dispatcher
-
-also has a little bit extra to allow for rich
+ checked post-dispatch to ensure nothing was modified. Our dispatcher 
+ also has a little bit extra to allow for rich
 [debugging](/#/docs/debugging) to the Flux cycle.
 
-Unless you're planning on extending our dispatcher, you won't ever need to
+Unless you're planning on extending our dispatcher or slowly 
+migrating to FluxThis, you won't ever need to
 require it. Every FluxThis component knows about the dispatcher singleton
 internally.
 
@@ -48,9 +48,8 @@ And that's it! You can start using our dispatcher to get super sick
 
 ## Dispatcher.dispatch(Action)
 
-When you wish to dispatch an action to your Flux application, you will
-call this method, which has the same interface as the standard
-Flux dispatcher implementation.
+This is the method you will call when you want to dispatch an action
+to any stores that are listening for the given type and/or source.
 
 #### Action
 - `{string} source` **optional** - Source of an action to be used by a store
