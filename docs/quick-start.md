@@ -12,7 +12,9 @@ First, set a wonderful project environment using the quick start project on NPM:
 npm install -g gulp 
 
 # installs this quick start module
-npm install react-fluxthis-webpack-mocha-gulp
+git clone https://github.com/mako-taco/react-fluxthis-webpack-mocha-gulp.git
+cd react-fluxthis-webpack-mocha-gulp
+npm install
 ```
 
 This project sets up a few things for you:
