@@ -48,17 +48,17 @@ creating a simple 'todo' application.
 	- TodoItem
 
 ## Creating an ImmutableStore
-Direct your attention to `src/stores/MyFirstStore.es6.js`. You will use this as a skelleton
+Direct your attention to `src/stores/MyFirstStore.es6.js`. You will use this as a skeleton
 for creating the store which will hold all the information about your Todo list. When making
 new stores, the first thing you should think about is the information that your views will
 need to render your application. In the case of the Todo list, we really only need to store
 a list of all our Todos! We will use an `ImmutableList` for this purpose.
 
 ### The `init` Method
-Inside of a stores `init` method, you should declare every property of your store. Here we
+Inside of a stores `init` method, you should declare every property of your store with a default value. Here we
 add a list of todos, as well as an integer to keep track of todo IDs. Every property of an
-`ImmutableStore` is required to be an Immutable object or primative javascript type. Don't
-worry, FluxThis will quickly catch your mistakes if you make any.
+`ImmutableStore` is required to be an Immutable object or primitive javascript type. Don't
+worry, FluxThis will quickly catch your mistakes, if you make any.
 
 ```js
 init () {
@@ -68,10 +68,10 @@ init () {
 ```
 
 ### The `public` Methods
-Inside of the `public` object, add in accessor functions which can be used to get at the data
+Inside of the `public` object, add accessor functions which can be used to get the data
 inside your store. In our case, we just need to return our list of todos.
 
-
+**Note** : Immutable Stores can only return immutable objects or primitive types.
 ```js
 public {
 	getTodos () {
@@ -83,7 +83,7 @@ public {
 ### The `private` Methods
 Private methods are called internally by the store to respond to updates from the dispatcher.
 These methods should update your store's internal state. Referring to our design that we laid
-out earlier, you can see we will need to deal with three possible actions: Add, remove, and
+out earlier, you can see we will need to deal with three possible actions: add, remove, and
 toggle.
 
 ```js
@@ -120,6 +120,8 @@ completely replaced in order to update them. That is why every single private me
 in this store reassigns a new value to `this.todos`. Be sure to check out the docs for 
 ImmutableJS if any of the immutability bits are confusing.
 
+**Note**: Private methods being called is what triggers your view to update!
+
 ### Using `bindActions`
 If you're familiar with flux, you're probably wondering where the giant switch case of action
 types belongs. Things look a little different in FluxThis. Inside the `init` method, we add a
@@ -143,13 +145,13 @@ action type or action source. The second argument in the pair is a reference to 
 which will handle the action.
 
 In general, it's better to use constants for action types/sources instead of strings. See the
-documentation for `ConstantCollection` for more details.
+documentation for [ConstantCollection](/#/docs/constant-collections) for more details.
 
 At this point, your store has been created, and we can move on to creating a view that depends
 on it.
 
 ## Creating a Controller View
-In flux, certain high-level components which get their state directly from stores are refered
+In flux, certain high-level components which get their state directly from stores are referred
 to as Controller Views. FluxThis uses a mixin approach to creating controller views, and
 stores all information from relevant stores on `this.state` through the method `getStateFromStores`.
 
@@ -171,12 +173,16 @@ export default React.createClass({
 
 The first thing to notice here is the `mixins` attribute. For every store that this view depends on,
 add the store's `mixin` to the list. For the most part, only top level components will need to use
-FluxThis mixins.
+FluxThis mixins as it's good practice to resist have too many controll views in your
+react hierarchy.
 
 The second thing to see is `getStateFromStores`. This method is used to translate store public
 methods into internal component state. It should return an object, similar to `getInitialState`.
 Note: `getInitialState`, if defined, will run before `getStateFromStores`. In addition,
 `getInitialState` will always call `getStateFromStores`.
+
+`getInitialState` should be used to setup any component state that does not
+live in stores. 
 
 ```js
 getStateFromStores() {
