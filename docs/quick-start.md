@@ -226,7 +226,7 @@ renderTodoItems () {
 render () {
 	return <div>
 		{this.renderTodoItems()}
-		<input type='text' value={this.state.newTodoText/>
+		<input type='text' value={this.state.newTodoText}/>
 		<input type='button' value='add' onClick={this.handleAddClick}/>
 	</div>
 }
