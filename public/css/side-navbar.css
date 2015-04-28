@@ -24,3 +24,12 @@
     background-color: #f8694d;
     width: 75%;
 }
+
+.edit-github-text {
+    margin-top: 65px;
+}
+@media (max-width: 800px) {
+    .edit-github {
+        display: none;
+    }
+}

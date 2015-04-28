@@ -84,18 +84,40 @@ export default React.createClass({
     },
     render() {
 
+        const pathName = this.getPath();
+        const fileName = pathName.substring(pathName.lastIndexOf('/') + 1);
+        const url = `https://github.com/addthis/fluxthis.io/tree/master/docs/${fileName}.md`;
         return (
-            <div className='row docs-container'>
-                <div className='col-sm-1'/>
-                <div className='col-sm-2'>
-                    <ul id='sidebar' className='nav nav-stacked'>
-                        {this.getRouteLinks()}
-                    </ul>
+            <div>
+                <div className='row edit-github'>
+                    <div className='col-sm-1'/>
+                    <div className='col-sm-2'>
+                    </div>
+                    <div className='col-sm-6'>
+
+                    </div>
+                    <div className='col-sm-3'/>
                 </div>
-                <div className='col-sm-6'>
-                    <RouteHandler {...this.props} />
+                <div className='row docs-container'>
+
+
+
+                    <div className='col-sm-1'/>
+                    <div className='col-sm-2'>
+                        <ul id='sidebar' className='nav nav-stacked'>
+                            {this.getRouteLinks()}
+                        </ul>
+                    </div>
+                    <div className='col-sm-6'>
+                        <RouteHandler {...this.props} />
+
+                    </div>
+                    <div className='col-sm-3'>
+                        <a  target='_blank'
+                            href={url}
+                            className='edit-github-text'>Edit on Github</a>
+                        </div>
                 </div>
-                <div className='col-sm-3'/>
             </div>
         );
     }

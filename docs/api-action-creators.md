@@ -109,6 +109,35 @@ apiAC.getUser('123'); // Passes ID `123` to createRequest
 
 In this example we added some new options, so lets cover them.
 
+### Information about pending, success & failure actions
+
+As you can tell from our example, the API Action Creator can take
+default actions that are executed if certain conditions are met. 
+
+#### pending
+
+If an action type is provided to `pending`, then an action will be dispatched
+prior to the request being sent to the server.
+
+The payload of the dispatched action will be the `request` object we are sending
+to the server, which will contain any body, params, and/or query values. 
+
+#### success & failure 
+
+If an action type is passed to `success` or `failure`, then either of those
+will be invoked depending on whether or not the response received from the
+server passes the `successTest`. 
+
+When either of these actions are dispatched, they are provided with a payload
+of:
+
+- `{object} response` - response from the server
+- `{object} request` - the original request sent to the server
+
+The reason we provide you with both is so that you can reset data, compare
+previous and current data, etc. 
+
+
 #### createRequest(...args) => object
 
 This method allows you to format your request and set any URL parameters,
