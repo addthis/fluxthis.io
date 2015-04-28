@@ -214,19 +214,22 @@ renderTodoItems () {
 		let removeFn = this.handleTodoRemoveClick.bind(this, id);
 		let style = {textDecoration: todo.get('done') ? 'line-through' : ''};
 
-		return <div> 
+		return <div>
 			<span style={style}>
 				{todo.get('description')}
 			</span>
-			<button value={'remove'} onClick={removeFn}/>
-			<button value={'toggle'} onClick={toggleFn}/>
+			<input type='button' value='remove' onClick={removeFn}/>
+			<input type='button' value='toggle' onClick={toggleFn}/>
 		</div>;
 	});
+},
+updateTodoText: function(event) {
+	this.setState({ newTodoText: event.target.value });
 },
 render () {
 	return <div>
 		{this.renderTodoItems()}
-		<input type='text' value={this.state.newTodoText}/>
+		<input type='text' value={this.state.newTodoText} onChange={this.updateTodoText}/>
 		<input type='button' value='add' onClick={this.handleAddClick}/>
 	</div>
 }
