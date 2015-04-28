@@ -79,28 +79,28 @@ var apiAC = new APIActionCreator({
         method: 'GET',
         pending: 'RECEIVE_USER_PENDING',
         success: 'RECEIVE_USER_SUCCESS',
-        failure: 'RECEIVE_USER_FAILURE'
-    },
-    successTest(response) {
-        return response &&
-            response.status &&
-            response.status >= 200 &&
-            response.status < 300;
-    },
-    handleSuccess(request, response) {
-        // do some stuff like dispatch an action
-    },
-    handleFailure(request, response) {
-        // do some stuff like dispatch an action
-        // Notice you get the original request,
-        // so you can do undos with the original data
-    },
-    createRequest(userID) {
-        return {
-            params: {
-                userID: userID
+        failure: 'RECEIVE_USER_FAILURE',
+        successTest(response) {
+                return response &&
+                    response.status &&
+                    response.status >= 200 &&
+                    response.status < 300;
+            },
+            handleSuccess(request, response) {
+                // do some stuff like dispatch an action
+            },
+            handleFailure(request, response) {
+                // do some stuff like dispatch an action
+                // Notice you get the original request,
+                // so you can do undos with the original data
+            },
+            createRequest(userID) {
+                return {
+                    params: {
+                        userID: userID
+                    }
+                };
             }
-        };
     }
 });
 
