@@ -33,7 +33,12 @@ Router.run(routes, (Handler, options) => {
             'location': options.path,
             'title': document.title
         });
-    }, 0);
+    });
 
     React.render(<Handler />, document.getElementById('root'));
+
+    // If addthis has been loaded and we route change then refresh layers.
+    if (typeof addthis !== 'undefined') {
+        addthis.layers.refresh();
+    }
 });
