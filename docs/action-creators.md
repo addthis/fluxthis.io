@@ -70,9 +70,9 @@ var myActionCreator = new ActionCreator({
 		actionType: 'DO_THING',
 
 		//define what payloads for this action should look like
-		payloadType: ActionCreator.PayloadType.shape({
-			do: ActionCreator.PayloadType.string,
-			thing: ActionCreator.PayloadType.number.isRequired,
+		payloadType: ActionCreator.PayloadTypes.shape({
+			do: ActionCreator.PayloadTypes.string,
+			thing: ActionCreator.PayloadTypes.number.isRequired,
 		}).isRequired,
 
 		createPayload: function (arg1, arg2) {
