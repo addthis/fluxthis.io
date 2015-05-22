@@ -31,14 +31,12 @@ var myAPIActionCreator = new APIActionCreator(options);
 
 #### Options
 - `displayName` Human readable name for debugging **required**
-- `actionSource` Source string so that stores know who the action originated from **required**
 
 ### Basic Example
 
 ```javascript
 var apiAC = new APIActionCreator({
     displayName: 'UserAPIActionCreator',
-    actionSource: 'USER_API_ACTION_SOURCE',
     getUsers: {
         route: '/user',
         method: 'GET',
@@ -52,8 +50,8 @@ var apiAC = new APIActionCreator({
 Lets break down this basic example and then we will get into some of the powerful options
 that API Action Creators give you.
 
-As with normal [Action Creators](/#/docs/action-creators), you must provide a `displayName`
-and `actionSource`. The part that differs is how you define actions.
+As with normal [Action Creators](/#/docs/action-creators), you must provide a `displayName`. 
+The part that differs is how you define actions.
 
 In the above example we have an action called `getUsers` which can be accessed by
 calling `apiAC.getUsers()`.
@@ -73,7 +71,6 @@ anything else is a failure.
 ```javascript
 var apiAC = new APIActionCreator({
     displayName: 'UserAPIActionCreator',
-    actionSource: 'USER_API_ACTION_SOURCE',
     getUser: {
         route: '/user/:userID',
         method: 'GET',

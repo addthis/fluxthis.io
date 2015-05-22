@@ -51,7 +51,6 @@ var myActionCreator = new ActionCreator(options);
 
 #### Options
 - `displayName` Human readable name for debugging **required**
-- `actionSource` Source string so that stores know who the action originated from **required**
 
 ## ActionCreator Example
 
@@ -62,15 +61,13 @@ var ActionCreator = FluxThis.ActionCreator;
 var myActionCreator = new ActionCreator({
 	displayName: 'MyActionCreator',
 
-	actionSource: 'CONTRIVED_EXAMPLE',
-
 	//defines a public method
 	doThing: {
 		//used by stores to identify an action
-		actionType: 'DO_THING',
+		type: 'DO_THING',
 
 		//define what payloads for this action should look like
-		payloadType: ActionCreator.PayloadTypes.shape({
+		payload: ActionCreator.PayloadTypes.shape({
 			do: ActionCreator.PayloadTypes.string,
 			thing: ActionCreator.PayloadTypes.number.isRequired,
 		}).isRequired,
@@ -88,10 +85,10 @@ var myActionCreator = new ActionCreator({
 
 	//defines another public method
 	doOtherThing: {
-		actionType: 'DO_OTHER_THING',
+		type: 'DO_OTHER_THING',
 
 		//some actions should be dispatched without payloads
-		payloadType: null
+		payload: null
 	}
 });
 
@@ -105,17 +102,17 @@ myActionCreator.doOtherThing();
 
 #### Action Type
 
-`actionType` is a string value that corresponds to an action. This value
+`type` is a string value that corresponds to an action. This value
 is what stores listen to in `this.bindActions` and respond to internally
 if the store cares about a given action.
 
 
 #### Payload Type
 
-`payloadType` is exactly like `propTypes` in React, which you can read more
+`payload` is exactly like `propTypes` in React, which you can read more
 about [here](https://facebook.github.io/react/docs/reusable-components.html).
 
-You may access these `payloadType` values via:
+You may access these `payload` values via:
 
 ```js
 ActionCreator.PayloadTypes
@@ -124,7 +121,7 @@ ActionCreator.PayloadTypes
 What we did in FluxThis was expose PropTypes to actions, so that you could
 validate your action payloads just like you can with prop types in any
 environment that is *not* production. That means, when in production FluxThis
-will not check ActionTypes to ensure performance.
+will not check types to ensure performance.
 
 #### createPayload(...args)
 

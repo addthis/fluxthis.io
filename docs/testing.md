@@ -21,7 +21,6 @@ other than testing!
 ### TestUtils.mockDispatch(action)
 
 * {string} action.type - The action type of the action your wish to dispatch.
-* {string} action.source - The action source you wish to mock
 * {object} action.payload - An payload object to setup the store.
 
 There is a fundamental problem that you run into when you try to

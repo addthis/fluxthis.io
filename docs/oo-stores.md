@@ -115,8 +115,8 @@ myStore.setNameValue(5, 'Crank Shot'); // undefined is not a function
 
 ### Binding actions
 The ObjectOrientedStore lets you easily handle dispatched actions without any messy
-switch statement. Just pass `bindActions` pairs of constants (either action
-types or action sources) and private store functions to handle them.
+switch statement. Just pass `bindActions` pairs of action types and private store 
+functions to handle them.
 
 ```js
 var myStore = new ObjectOrientedStore({

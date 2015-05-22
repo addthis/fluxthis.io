@@ -140,11 +140,11 @@ init () {
 
 ```
 
-The call to `bindActions` takes pairs of arguments. The first argument in a pair is either an
-action type or action source. The second argument in the pair is a reference to a private method
+The call to `bindActions` takes pairs of arguments. The first argument in a pair is an
+action type. The second argument in the pair is a reference to a private method
 which will handle the action.
 
-In general, it's better to use constants for action types/sources instead of strings. See the
+In general, it's better to use constants for action types instead of strings. See the
 documentation for [ConstantCollection](/#/docs/constant-collections) for more details.
 
 At this point, your store has been created, and we can move on to creating a view that depends
@@ -243,36 +243,33 @@ most unique thing about it is that it does not provide any access to the dispatc
 a dispatched action is mostly defined by configuration.
 
 Open up the file `src/actions/MyFirstActionCreator.es6.js` to get started. The first thing we will 
-add to the action creator is an `actionSource` and a `displayName`. The `displayName` is just for
-debugging purposes. The `actionSource` will be sent with every one of the actions this creator
-emits. This can sometimes be useful for stores to respond to instead of a specific `actionType`.
+add to the action creator is a `displayName`, which provides you with an easy way to identify 
+the source of actions when you're debugging.
 
 ```js
 export default new ActionCreator({
-	displayName: 'Todo',
-	actionSource: 'UI_TODO'
+	displayName: 'Todo'
 });
 ```
 
-Next, we define our actions. At the minimum, actions need only an `actionType` to function. We
-will provide `payloadType`s as well, which will spit out warnings when payloads don't look like
+Next, we define our actions. At the minimum, actions need only an `type` to function. We
+will provide `payload`s as well, which will spit out warnings when payloads don't look like
 we expect them to, similar to react's `propTypes` .
 
 ```js
 export default new ActionCreator({
 	displayName: 'Todo',
-	actionSource: 'UI_TODO',
 	createTodo: {
-		actionType: 'ADD_TODO',
-		payloadType: ActionCreator.PayloadTypes.string.isRequired
+		type: 'ADD_TODO',
+		payload: ActionCreator.PayloadTypes.string.isRequired
 	},
 	removeTodo: {
-		actionType: 'REMOVE_TODO',
-		payloadType: ActionCreator.PayloadTypes.number.isRequired
+		type: 'REMOVE_TODO',
+		payload: ActionCreator.PayloadTypes.number.isRequired
 	},
 	toggleTodo: {
-		actionType: 'TOGGLE_TODO',
-		payloadType: ActionCreator.PayloadTypes.number.isRequired
+		type: 'TOGGLE_TODO',
+		payload: ActionCreator.PayloadTypes.number.isRequired
 	}
 });
 ```

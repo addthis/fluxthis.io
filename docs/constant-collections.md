@@ -16,7 +16,7 @@ console.log(ACTION_TYPES.ACTION_TYPE_1 === ACTION_TYPES.ACTION_TYPE_2); //false
 console.log(ACTION_TYPES.ACTION_TYPE_1 === ACTION_TYPES.ACTION_TYPE_1;) //true
 console.log(ACTION_TYPES.EXAMPLE === CONTRIVED.EXAMPLE;) //false!
 ```
-Use them for action types, action sources, or anything else requiring constants with no particular value.
+Use them for action types or anything else requiring constants with no particular value.
 
 ##Constructing
 ```js

@@ -6,14 +6,6 @@ Here you will find a list of the more confusing invariants we throw at you to sh
 
 ```js
 invariant(
-	!ActionSources.has(options.actionSource),
-	`ActionCreator - Your actionSource of ${options.actionSource} is not unique.`
-);	
-```
-All action sources must be unique! Not many people use action sources, but those who do will find things go wonky when two developers accidentally share an action source.
-
-```js
-invariant(
 	!DisplayNames.has(options.displayName),
 	`ActionCreator - Your displayName of ${options.displayName} is not unique.`
 );
@@ -22,11 +14,11 @@ All ActionCreators must have a unique `displayName` for debugging readability
 
 ```js
 invariant(
-	actionType !== undefined,
-	`The method ${name} could not be created on ${this}; actionType must be provided`
+	type !== undefined,
+	`The method ${name} could not be created on ${this}; type must be provided`
 );
 ```
-Without an `actionType`, stores most likely wont know what to do with an action. This mostly helps out when you accidentally pass `undefined` due to a typo'd constant.
+Without an `type`, stores most likely wont know what to do with an action. This mostly helps out when you accidentally pass `undefined` due to a typo'd constant.
 
 ###Dispatcher invariants
 ```js
@@ -55,7 +47,7 @@ invariant(
   JSON.stringify(action) === serializedAction,
   `An action dispatched by the FluxThis dispatcher was
   mutated. This is bad. Please check the handlers for
-  ${action.source} ${action.type}`
+  ${action.type}`
 );
 ```
 **WARNING**: you dispatched something, and then CHANGED that something. This practice will lead to horrible, uncontrollable, hard-to-track-down bugs, as stores receive modified payloads that they don't understand. Don't do it!.

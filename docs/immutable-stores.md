@@ -200,8 +200,8 @@ myStore.setNameValue(5, 'Crank Shot'); // undefined is not a function
 
 ### Binding actions
 The ImmutableStore lets you easily handle dispatched actions without any messy
-switch statement. Just pass `bindActions` pairs of constants (either action
-types or action sources) and private store functions to handle them.
+switch statement. Just pass `bindActions` pairs of action types and private 
+store functions to handle them.
 
 Using bindActions over traditional switch statements also allows FluxThis
 to optimize dispatches by sending them to only stores that registered
