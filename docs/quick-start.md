@@ -201,10 +201,10 @@ getInitialState () {
 handleAddClick () {
 	/* We'll come back to this later */	
 },
-handleTodoToggleClick () {
+handleTodoToggleClick (id) {
 	/* We'll come back to this later */	
 },
-handleTodoRemoveClick () {
+handleTodoRemoveClick (id) {
 	/* We'll come back to this later */	
 },
 renderTodoItems () {
@@ -223,7 +223,7 @@ renderTodoItems () {
 		</div>;
 	});
 },
-updateTodoText: function(event) {
+updateTodoText: (event) => {
 	this.setState({ newTodoText: event.target.value });
 },
 render () {
