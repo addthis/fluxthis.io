@@ -91,7 +91,7 @@ private {
 	addTodo (description) {
 		let todo = Immutable.fromJS({
 			description: description,
-			id: this.todoID++,
+			id: this.lastID++,
 			done: false
 		}); 
 
@@ -109,7 +109,7 @@ private {
 	toggleTodo (id) {
 		let index = this.todos.findIndex(todo => todo.get('id') === id);
 
-		this.todos = this.todos.update(id, (todo) => {
+		this.todos = this.todos.update(index, (todo) => {
 			return todo.set('done', !todo.get('done'));
 		});
 	}
