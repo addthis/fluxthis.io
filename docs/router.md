@@ -37,9 +37,9 @@ const ControllerView = React.createClass({
 // Lets render our controller view then setup our router
 React.render(ControllerView, document.getElementById('awesomeId'));
 
-// now lets setup our routes & star the router!
+// now lets setup our route & start the router!
 function routes(router) {
-    router.route('/awesome', 'awesomeRoute', function *(next) {
+    router.route('/awesome', function *(next) {
         this.setReactElement(<div>Everything is awesome!</div>);
         yield *next;
     });
@@ -67,13 +67,12 @@ That's right! We really liked what [koajs](http://koajs.com) did with their rout
 - `route(route: string, routeName: string, handler: generator)`
     - Use this method to define new routes
     - `route` - example: `/user/:id`... Checkout [here](https://github.com/component/path-to-regexp#usage) for more complex examples
-    - `routeName` - unique route name used for navigation
     - `routeHandler` - ES6 generator handler
     
 ```javascript
 // userRoutes.js
 export default function (router) {
-  router.route('/user/:id', 'user', function *userHandler(next) {
+  router.route('/user/:id', function *userHandler(next) {
     // load user async
     const userID = this.getPathParams.get('id');
     loadUser(userID);
@@ -297,17 +296,17 @@ export default React.createClass({
 ```javascript
 
 export default function (router) {
-  router.route('/', 'default', function *defaultHander(next) {
+  router.route('/', function *defaultHander(next) {
       this.rewriteTo('/foo/bar');
   });
   
-  router.route('/foo/:id', 'foo', function *fooHandler(next) {
+  router.route('/foo/:id',  function *fooHandler(next) {
       const id = this.getPathParams().get('id');
       this.setReactElement(<div>I'm a foo with an id: {id}</div>);
       yield *next;
   });
   
-  router.route('/bar', 'bar', function *booHandler(next) {
+  router.route('/bar', function *booHandler(next) {
       this.setReactElement(<div>I'm a bar</div>);
       yield *next;
   });
