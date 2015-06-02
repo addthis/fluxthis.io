@@ -110,11 +110,10 @@ export default function (router) {
         
     // perhaps do some authentication stuff?
     if (authFails()) {
-      this.rewriteTo('notAuthorized');
-      return;
+      this.rewriteTo('/notAuthorized);
+      return; // short circuit the middleware chain
     }
         
-    // else continue on
     yield *next;
   });
 }
@@ -137,7 +136,7 @@ Each Route & Middleware handler gets access to the same context object (aka this
  - `setReactElement(ReactElement, props: object)`
      - Sets the react element in the RouterStore with the given props
      - `ReactElement` - react element that will be passed to your Router controller view
-     - 'props' - optional props to be passed to your Router controller view as state
+     - `props` - optional props to be passed to your Router controller view as state
 
 ### Register Routes & Middleware
 
