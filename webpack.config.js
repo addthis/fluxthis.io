@@ -28,7 +28,7 @@ module.exports = {
         loaders: [
             { test: /\.css$/, loader: 'style?-singleton!css'},
             { test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-            { test: /\.jsx?$/, loader: 'babel-loader' },
+            { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
             { test: /\.md$/, loader: "html!markdown" }
         ]
     }
