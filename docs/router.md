@@ -37,10 +37,18 @@ const ControllerView = React.createClass({
 // Lets render our controller view then setup our router
 React.render(ControllerView, document.getElementById('awesomeId'));
 
+const AwesomeComponent = React.createClass({
+    render() {
+        return (
+            <div>I'm an awesome component</div>
+        );
+    }
+});
+
 // now lets setup our route & start the router!
 function routes(router) {
     router.route('/awesome', function *(next) {
-        this.setReactElement(<div>Everything is awesome!</div>);
+        this.setReactElement(AwesomeComponent);
         yield *next;
     });
 }
@@ -301,12 +309,12 @@ export default function (router) {
   
   router.route('/foo/:id',  function *fooHandler(next) {
       const id = this.getPathParams().get('id');
-      this.setReactElement(<div>I'm a foo with an id: {id}</div>);
+      this.setReactElement(FooComponent, {id}); // default id as prop
       yield *next;
   });
   
   router.route('/bar', function *booHandler(next) {
-      this.setReactElement(<div>I'm a bar</div>);
+      this.setReactElement(BarComponent);
       yield *next;
   });
 }
