@@ -6,6 +6,60 @@ FluxThis' Router is a koa inspired router that takes advantage of ES6 generators
  others use. One huge difference is that this router is built with Flux in 
  mind & uses Flux principles. 
 
+
+### Quick Introduction
+
+```javascript
+
+// Create our React controller view to listen for route changes
+const ControllerView = React.createClass({
+  displayName: 'RouterControllerView',
+  mixins: [RouterStore.mixin], // Should use the immutable pure render mixin here :)
+  getStateFromStores() {
+    return {
+      reactElement: RouterStore.getReactElement(),
+      reactElementProps: RouterStore.getReactElementProps()
+    };
+  },
+  render() {
+    const ReactComponent = this.state.reactElement;
+  
+    return (
+      <div>
+        <ReactComponent {...this.state.reactElementProps} />
+      </div>
+    );
+  }
+});
+
+// Lets render our controller view then setup our router
+React.render(ControllerView, document.getElementById('awesomeId'));
+
+// now lets setup our routes & star the router!
+function routes(router) {
+    router.route('/awesome', 'awesomeRoute', function *(next) {
+        this.setReactElement(<div>Everything is awesome!</div>);
+        yield *next;
+    });
+}
+
+Router
+  .defaultRoute('/awesome')
+  .register(routes)
+  .start();
+  
+```
+
+Now that we have your interest, keep reading to learn about more sweet features.
+
+### Wait ES6 Generators and a Router? Wut.
+
+That's right! We really liked what [koajs](http://koajs.com) did with their routing and generators,
+ so we decided to follow their lead and do this in the browser. See the awesome
+ gif below for a quick introduction to how generators make routing & middleware awesome.
+ 
+![koa example](http://devres.zoomquiet.io/data/20131229140758/n7l5uakjo0.gif)
+
 ### Defining Routes
 
 - `route(route: string, routeName: string, handler: generator)`
@@ -177,12 +231,15 @@ As with any other mixin, you are given access to these methods on `this` inside 
 ## Basic Example Application
 
 Lets first start by creating our main entrypoint to our application
+
+**main.js**
+
 ```javascript
-// main.js
+
 const React = require('react');
 const Router = require('fluxthis/src/Router.es6');
 const RouterControllerView = require('./RouterControllerView');
-const routes = require('./routes);
+const routes = require('./routes');
 
 // Lets render our controller view. 
 React.render(RouterControllerView, document.getElementById('someID'));
