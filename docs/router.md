@@ -45,7 +45,7 @@ function routes(router) {
 
 Router
   .defaultRoute('/awesome')
-  .register(routes)
+  .register(routes) // you can call this multiple times. yay modularity
   .start();
   
 ```
