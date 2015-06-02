@@ -1,3 +1,5 @@
+# Coming very soon :D
+
 # FluxThis Router
 
 FluxThis' Router is a koa inspired router that takes advantage of ES6 generators
@@ -130,11 +132,9 @@ Each Route & Middleware handler gets access to the same context object (aka this
      - Returns an immutable map of param => value
  - `getPathParams(): ImmutableMap`
      - Returns an immutable map of param => value
- - `redirectTo(routeName: string, pathParams: object)`
-     - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order.
-     - `routeName` - route name of a defined route.
-     - `pathParams` - path params if applicable for the given route name. 
-     - example) Lets say the path you want to go to is `/user/:id` and the route is named `user`. You'd do `redirectTo('user', {id: '1'})`
+ - `redirectTo(path: string)`
+     - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined. 
+     - `path` - replaces the current path in history with the new one
  - `setReactElement(ReactElement, props: object)`
      - Sets the react element in the RouterStore with the given props
      - `ReactElement` - react element that will be passed to your Router controller view
@@ -224,16 +224,12 @@ So what's included in this mixin?
      - Returns an immutable map of param => value
  - `getPathParams(): ImmutableMap`
      - Returns an immutable map of param => value
- - `redirectTo(routeName: string, pathParams: object)`
+ - `redirectTo(path: string)`
      - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined. 
-     - `routeName` - route name of a defined route.
-     - `pathParams` - path params if applicable for the given route name. 
-     - example) Lets say the path you want to go to is `/user/:id` and the route is named `user`. You'd do `redirectTo('user', {id: '1'})`
- - `navigateTo(routeName: string, pathParams: object)`
+     - `path` - replaces the current path in history with the new one
+ - `navigateTo(path: string)`
      - navigates to the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined. 
-     - `routeName` - route name of a defined route.
-     - `pathParams` - path params if applicable for the given route name. 
-     - example) Lets say the path you want to go to is `/user/:id` and the route is named `user`. You'd do `navigateTo('user', {id: '1'})`
+     - `path` - navigate to a given path pushing it onto the history
 
 As with any other mixin, you are given access to these methods on `this` inside the component. 
 
@@ -302,7 +298,7 @@ export default React.createClass({
 
 export default function (router) {
   router.route('/', 'default', function *defaultHander(next) {
-      this.rewriteTo('foo', {id: 'sup'});
+      this.rewriteTo('/foo/bar');
   });
   
   router.route('/foo/:id', 'foo', function *fooHandler(next) {
