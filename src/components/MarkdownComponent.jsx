@@ -32,6 +32,7 @@ const MARKDOWN_LOOKUP = {
     'action-creators': require('action-creators.md'),
     'api-action-creators': require('api-action-creators.md'),
     'constant-collections': require('constant-collections.md'),
+    'router': require('router.md'),
 
     'debugging': require('debugging.md'),
     'testing': require('testing.md'),
@@ -52,6 +53,7 @@ const TITLE_LOOKUP = {
     'action-creators': 'Action Creators',
     'api-action-creators': 'API Action Creators',
     'constant-collections': 'Constant Collections',
+    'router': 'Router',
 
     'debugging': 'Debugging',
     'testing': 'Testing',

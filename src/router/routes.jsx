@@ -40,6 +40,7 @@ export default (
             <Route name='action-creators' handler={MarkdownComponent}/>
             <Route name='api-action-creators' handler={MarkdownComponent}/>
             <Route name='constant-collections' handler={MarkdownComponent}/>
+            <Route name='router' handler={MarkdownComponent}/>
 
             <Route name='debugging' handler={MarkdownComponent}/>
             <Route name='testing' handler={MarkdownComponent}/>
