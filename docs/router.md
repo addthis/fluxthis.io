@@ -162,6 +162,16 @@ Router
   .start();
 ```
 
+#### Router methods
+
+- `defaultRoute(string)` 
+    - takes the default route to be used if the hash is missing or route was not found
+- `register(function)`
+    - registers new middleware and routes. this method can be called multiple times. order matters when dealing with middleware
+    - the callback is passed a `router` object with the 3 defined route/middleware types: `all`, `use`, & `route`.
+- `start`
+    - starts the router. Should only be called once. 
+    
 ### Controller View
 
 Lets wrap it all together! To do this, we need to create a controller view that will be your root node in your react `tree`. This controller view will listen to the RouterStore for changes to the route or react element to be rendered. 
