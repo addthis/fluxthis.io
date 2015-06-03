@@ -151,6 +151,7 @@ so lets cover those:
     in `createRequest`.
 - `body` - Add JSON to the body of your request
 - `query` - Formats values to a valid query string that's appended to the request's URL.
+- `headers` - object of key/value pairs to set header key/values for your request
 
 #### handleSuccess(request, response)
 
