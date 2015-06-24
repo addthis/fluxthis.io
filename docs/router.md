@@ -47,7 +47,7 @@ const AwesomeComponent = React.createClass({
 
 // now lets setup our route & start the router!
 function routes(router) {
-    router.route('/awesome', function *(next) {
+    router.route('/awesome', 'awesome', function *(next) {
         this.setReactElement(AwesomeComponent);
         yield *next;
     });
@@ -80,7 +80,7 @@ That's right! We really liked what [koajs](http://koajs.com) did with their rout
 ```javascript
 // userRoutes.js
 export default function (router) {
-  router.route('/user/:id', function *userHandler(next) {
+  router.route('/user/:id', 'userShow', function *userHandler(next) {
     // load user async
     const userID = this.getPathParams.get('id');
     loadUser(userID);
@@ -303,17 +303,17 @@ export default React.createClass({
 ```javascript
 
 export default function (router) {
-  router.route('/', function *defaultHander(next) {
+  router.route('/', 'default', function *defaultHander(next) {
       this.redirectTo('/foo/bar');
   });
 
-  router.route('/foo/:id',  function *fooHandler(next) {
+  router.route('/foo/:id', 'foo', function *fooHandler(next) {
       const id = this.getPathParams().get('id');
       this.setReactElement(FooComponent, {id}); // default id as prop
       yield *next;
   });
 
-  router.route('/bar', function *booHandler(next) {
+  router.route('/bar', 'bar', function *booHandler(next) {
       this.setReactElement(BarComponent);
       yield *next;
   });
