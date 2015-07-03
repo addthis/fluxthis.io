@@ -3,10 +3,10 @@
 # FluxThis Router
 
 FluxThis' Router is a koa inspired router that takes advantage of ES6 generators
- to avoid callback hell and provide true middleware routes in the browser! 
- Under the hood, the router uses the same core libraries that express, koa and 
- others use. One huge difference is that this router is built with Flux in 
- mind & uses Flux principles. 
+ to avoid callback hell and provide true middleware routes in the browser!
+ Under the hood, the router uses the same core libraries that express, koa and
+ others use. One huge difference is that this router is built with Flux in
+ mind & uses Flux principles.
 
 
 ### Quick Introduction
@@ -25,7 +25,7 @@ const ControllerView = React.createClass({
   },
   render() {
     const ReactComponent = this.state.reactElement;
-  
+
     return (
       <div>
         <ReactComponent {...this.state.reactElementProps} />
@@ -47,7 +47,7 @@ const AwesomeComponent = React.createClass({
 
 // now lets setup our route & start the router!
 function routes(router) {
-    router.route('/awesome', function *(next) {
+    router.route('/awesome', 'awesome', function *(next) {
         this.setReactElement(AwesomeComponent);
         yield *next;
     });
@@ -57,7 +57,7 @@ Router
   .defaultRoute('/awesome')
   .register(routes) // you can call this multiple times. yay modularity
   .start();
-  
+
 ```
 
 Now that we have your interest, keep reading to learn about more sweet features.
@@ -67,7 +67,7 @@ Now that we have your interest, keep reading to learn about more sweet features.
 That's right! We really liked what [koajs](http://koajs.com) did with their routing and generators,
  so we decided to follow their lead and do this in the browser. See the awesome
  gif below for a quick introduction to how generators make routing & middleware awesome.
- 
+
 ![koa example](http://devres.zoomquiet.io/data/20131229140758/n7l5uakjo0.gif)
 
 ### Defining Routes
@@ -76,15 +76,15 @@ That's right! We really liked what [koajs](http://koajs.com) did with their rout
     - Use this method to define new routes
     - `route` - example: `/user/:id`... Checkout [here](https://github.com/component/path-to-regexp#usage) for more complex examples
     - `routeHandler` - ES6 generator handler
-    
+
 ```javascript
 // userRoutes.js
 export default function (router) {
-  router.route('/user/:id', function *userHandler(next) {
+  router.route('/user/:id', 'userShow', function *userHandler(next) {
     // load user async
     const userID = this.getPathParams.get('id');
     loadUser(userID);
-        
+
     // set the element
     this.setReactElement(userComponent, {userID});
     yield *next;
@@ -101,7 +101,7 @@ There are 2 different types of middleware you can register.
 2. `all(urlRegex: string, handler: generator)`
     - The main difference between `all` and `use` is that `all` takes a string to match against URLs.
     - `urlStringRegex` - example: `/users*` would invoke the handler method for any route matching the regex string
-    
+
 ```javascript
 // middleware.js
 
@@ -112,16 +112,16 @@ export default function (router) {
     yield *next;
     // do some stuff after everyone else
   });
-    
+
   router.all('/user*', function *userAuthHandler(next) {
     document.title = 'User Profile';
-        
+
     // perhaps do some authentication stuff?
     if (authFails()) {
-      this.rewriteTo('/notAuthorized);
+      this.redirectTo('/notAuthorized);
       return; // short circuit the middleware chain
     }
-        
+
     yield *next;
   });
 }
@@ -139,7 +139,7 @@ Each Route & Middleware handler gets access to the same context object (aka this
  - `getPathParams(): ImmutableMap`
      - Returns an immutable map of param => value
  - `redirectTo(path: string)`
-     - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined. 
+     - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined.
      - `path` - replaces the current path in history with the new one
  - `setReactElement(ReactElement, props: object)`
      - Sets the react element in the RouterStore with the given props
@@ -150,10 +150,10 @@ Each Route & Middleware handler gets access to the same context object (aka this
 
 You can register middleware & routes in whatever order you wish; however,
 you must make sure that you call start when you are finished. You cannot
-add anymore routes once the router has started. 
+add anymore routes once the router has started.
 
 Each register call will invoke your function passing it a `router` object as you
-have seen in our previous examples. This design pattern allows you to have 
+have seen in our previous examples. This design pattern allows you to have
 modular design patterns by separating routes into different files.
 
 ```javascript
@@ -170,19 +170,19 @@ Router
 
 #### Router methods
 
-- `defaultRoute(string)` 
+- `defaultRoute(string)`
     - takes the default route to be used if the hash is missing or route was not found
 - `register(function)`
     - registers new middleware and routes. this method can be called multiple times. order matters when dealing with middleware
     - the callback is passed a `router` object with the 3 defined route/middleware types: `all`, `use`, & `route`.
 - `start`
-    - starts the router. Should only be called once. 
-    
+    - starts the router. Should only be called once.
+
 ### Controller View
 
-Lets wrap it all together! To do this, we need to create a controller view that will be your root node in your react `tree`. This controller view will listen to the RouterStore for changes to the route or react element to be rendered. 
+Lets wrap it all together! To do this, we need to create a controller view that will be your root node in your react `tree`. This controller view will listen to the RouterStore for changes to the route or react element to be rendered.
 
-**Note** - You should try your hardest to only have one router controller view to decrease complexity. See the component mixin below for more information about how you can avoid more controller views. 
+**Note** - You should try your hardest to only have one router controller view to decrease complexity. See the component mixin below for more information about how you can avoid more controller views.
 
 ```javascript
 
@@ -206,7 +206,7 @@ React.createClass({
     if (!ReactComponent) {
       return null;
     }
-  
+
     return (
       <div>
         <HeaderComponent />
@@ -220,7 +220,7 @@ React.createClass({
 
 ### Component Mixin
 
-We realize that you don't want to propagate down your props from your router controller view to children components deep down the tree, which is why we give you access to a component mixin with useful getters & navigation/redirect method calls. Please be aware that this mixin will NOT update your component, so you should ensure that reconciliation will go down to the nodes who care about routes. You might find it better just to propagate down values. 
+We realize that you don't want to propagate down your props from your router controller view to children components deep down the tree, which is why we give you access to a component mixin with useful getters & navigation/redirect method calls. Please be aware that this mixin will NOT update your component, so you should ensure that reconciliation will go down to the nodes who care about routes. You might find it better just to propagate down values.
 
 So what's included in this mixin?
 
@@ -231,13 +231,13 @@ So what's included in this mixin?
  - `getPathParams(): ImmutableMap`
      - Returns an immutable map of param => value
  - `redirectTo(path: string)`
-     - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined. 
+     - replaces the current URL by finding the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined.
      - `path` - replaces the current path in history with the new one
  - `navigateTo(path: string)`
-     - navigates to the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined. 
+     - navigates to the route with the given name and filling in the params. If not found, then redirects to 404 URL or default in that order by whichever is defined.
      - `path` - navigate to a given path pushing it onto the history
 
-As with any other mixin, you are given access to these methods on `this` inside the component. 
+As with any other mixin, you are given access to these methods on `this` inside the component.
 
 
 ## Basic Example Application
@@ -253,7 +253,7 @@ const Router = require('fluxthis/src/Router.es6');
 const RouterControllerView = require('./RouterControllerView');
 const routes = require('./routes');
 
-// Lets render our controller view. 
+// Lets render our controller view.
 React.render(RouterControllerView, document.getElementById('someID'));
 
 Router
@@ -287,7 +287,7 @@ export default React.createClass({
     if (!ReactComponent) {
       return null;
     }
-  
+
     return (
       <div>
         <HeaderComponent />
@@ -303,17 +303,17 @@ export default React.createClass({
 ```javascript
 
 export default function (router) {
-  router.route('/', function *defaultHander(next) {
-      this.rewriteTo('/foo/bar');
+  router.route('/', 'default', function *defaultHander(next) {
+      this.redirectTo('/foo/bar');
   });
-  
-  router.route('/foo/:id',  function *fooHandler(next) {
+
+  router.route('/foo/:id', 'foo', function *fooHandler(next) {
       const id = this.getPathParams().get('id');
       this.setReactElement(FooComponent, {id}); // default id as prop
       yield *next;
   });
-  
-  router.route('/bar', function *booHandler(next) {
+
+  router.route('/bar', 'bar', function *booHandler(next) {
       this.setReactElement(BarComponent);
       yield *next;
   });
