@@ -223,7 +223,7 @@ renderTodoItems () {
 		</div>;
 	});
 },
-updateTodoText: function(event) {
+updateTodoText (event) {
 	this.setState({ newTodoText: event.target.value });
 },
 render () {
