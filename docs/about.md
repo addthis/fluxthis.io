@@ -22,7 +22,7 @@ turns it into a super-strict framework, to help large teams of devs avoid bad
 practices, and write sustainable, bug-free code.
 
 We use FluxThis in production across multiple teams and have found that
-these imposes restrictions on convention truly does help reduce code smell,
+these imposed restrictions on convention truly do help reduce code smell,
 and increase productivity and quality.
 
 ## Migration (made easy)
