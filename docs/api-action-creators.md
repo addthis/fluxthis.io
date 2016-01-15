@@ -42,7 +42,8 @@ var apiAC = new APIActionCreator({
         method: 'GET',
         pending: 'RECEIVE_USER_PENDING',
         success: 'RECEIVE_USER_SUCCESS',
-        failure: 'RECEIVE_USER_FAILURE'
+        failure: 'RECEIVE_USER_FAILURE',
+        abort: 'ABORT_GET_USERS'
     }
 });
 ```
@@ -61,6 +62,7 @@ calling `apiAC.getUsers()`.
 - `pending` - action type that gets dispatched once the ajax call has been submitted
 - `success` - action type that gets dispatched once the ajax call has been successful
 - `failure` - action type that gets dispatched once the ajax call has failed
+- `abort` - action type that gets dispatched if the ajax call was aborted
 
 **Note** - if you do not define `successTest` (see below) the API action creator will choose success
 or failure based on the status code of the response. Any 2xx status codes are success,
@@ -74,9 +76,11 @@ var apiAC = new APIActionCreator({
     getUser: {
         route: '/user/:userID',
         method: 'GET',
+        withCredentials: false,
         pending: 'RECEIVE_USER_PENDING',
         success: 'RECEIVE_USER_SUCCESS',
         failure: 'RECEIVE_USER_FAILURE',
+        abort: 'ABORT_GET_USER',
         successTest(response) {
             return response &&
                 response.status &&
@@ -90,6 +94,9 @@ var apiAC = new APIActionCreator({
             // do some stuff like dispatch an action
             // Notice you get the original request,
             // so you can do undos with the original data
+        },
+        handleAbort(request) {
+            // do something like spawn another request.
         },
         createRequest(userID) {
             return {
@@ -134,6 +141,16 @@ of:
 The reason we provide you with both is so that you can reset data, compare
 previous and current data, etc. 
 
+#### abort
+
+If an action type is provided to `abort`, then an action will be dispatched
+after the request has been aborted programmatically. This action will only be
+sent if the abort was successful and the request was not already done. This will be known
+at the time of calling abort on the request as a boolean value is returned.
+#### withCredentials
+
+The default value for this is false. You should set this to true if you are
+submitting CORS requests and need to pass cookies.
 
 #### createRequest(...args) => object
 
@@ -176,9 +193,73 @@ This method is a good place to dispatch specific actions.
 **Note** - `handleFailure` gets called PRIOR to dispatching the the `failure` action type
 if one is defined. Typically you will want to define one or the other, but not both.
 
+#### handleAbort(request)
+
+This handler gets called when a request submitted via an API action creator was cancelled
+programmatically.
 
 #### successTest(response) => boolean
 
 This method can be used to overwrite the default `successTest` which checks for a 2xx response code.
 An example use case for this method could be to check status code and the value of the response
 for specific validation.
+
+
+### Aborting A Request
+
+```javascript
+var apiAC = new APIActionCreator({
+    displayName: 'UserAPIActionCreator',
+    getUsers: {
+        route: '/user',
+        method: 'GET',
+        pending: 'RECEIVE_USER_PENDING',
+        success: 'RECEIVE_USER_SUCCESS',
+        failure: 'RECEIVE_USER_FAILURE'
+    }
+});
+
+React.createClass({
+    getInitialState() {
+        return {
+            request: null
+        };
+    },
+    handleClick(evt) {
+        evt.preventDefault();
+        const request = apiAC.getUsers();
+
+        // If the user clicked do something cool before the last request
+        // was done then abort the last one and submit the new request.
+        // Obviously you could do the opposite, which prevents trigger
+        // happy users from clicking too many times.
+        if (this.state.request && !this.state.request.isDone()) {
+            this.state.request.abort();
+            this.setState({request});
+        }
+    },
+    render() {
+        return (
+            <button onClick={this.handleClick}> do something cool </button>
+        );
+    }
+});
+```
+
+### Abort API
+
+When you invoke an API Action Creator's method a request object is returned.
+
+
+#### request.abort() => boolean
+
+This method should be called to abort the request. If the request was successfully
+aborted then true is returned and an action will be dispatched, if an abort action was
+set on the API Action Creator.
+
+This method will return false if the request failed to be aborted or the request
+already finished.
+
+#### request.isDone() => boolean
+
+This method should be used to determine if the request has been completed or not.
