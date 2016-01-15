@@ -15,6 +15,6 @@ navigate browser to localhost:8080
 ### Building For Release
 
 ```
-NODE_ENV=production webpack -p
+gulp build
 ```
 
