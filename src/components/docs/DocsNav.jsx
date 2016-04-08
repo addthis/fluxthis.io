@@ -31,6 +31,7 @@ const navItems = [
         {'dispatcher': 'Dispatcher'},
         {'controller-views': 'Controller Views'},
         {'immutable-stores': 'Immutable Stores'},
+        {'immutable-reducer-stores': 'Immutable Reducer Stores'},
         {'oo-stores': 'Non-Immutable Stores'},
         {'action-creators': 'Action Creators'},
         {'api-action-creators': 'API Action Creators'},
