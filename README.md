@@ -4,7 +4,8 @@
 ### Local Development
 
 ```
-webpack --watch
+npm install
+npm run watch
 
 cd public
 python -m SimpleHTTPServer 8080

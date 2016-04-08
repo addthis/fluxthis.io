@@ -36,6 +36,7 @@ export default (
             <Route name='dispatcher' handler={MarkdownComponent}/>
             <Route name='controller-views' handler={MarkdownComponent}/>
             <Route name='immutable-stores' handler={MarkdownComponent}/>
+            <Route name='immutable-reducer-stores' handler={MarkdownComponent}/>
             <Route name='oo-stores' handler={MarkdownComponent}/>
             <Route name='action-creators' handler={MarkdownComponent}/>
             <Route name='api-action-creators' handler={MarkdownComponent}/>
