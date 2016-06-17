@@ -305,7 +305,7 @@ var apiAC = new APIActionCreator({
 
 #### APIActionCreator.setDefaultBaseURL(url)
 
-This method sets a base URL to which all `route` options will be appended. A `route` will not be appended to the baseURL id the route itself is a fully qualified URL (i.e. `'http://example.com'`).
+This method sets a base URL to which all `route` options will be appended. A `route` will not be appended to the baseURL if the route itself is a fully qualified URL (i.e. `'http://example.com'`).
 
 ```javascript
 var APIActionCreator = require('fluxthis').APIActionCreator;
