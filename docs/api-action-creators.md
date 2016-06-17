@@ -51,7 +51,7 @@ var apiAC = new APIActionCreator({
 Lets break down this basic example and then we will get into some of the powerful options
 that API Action Creators give you.
 
-As with normal [Action Creators](/#/docs/action-creators), you must provide a `displayName`. 
+As with normal [Action Creators](/#/docs/action-creators), you must provide a `displayName`.
 The part that differs is how you define actions.
 
 In the above example we have an action called `getUsers` which can be accessed by
@@ -116,7 +116,7 @@ In this example we added some new options, so lets cover them.
 ### Information about pending, success & failure actions
 
 As you can tell from our example, the API Action Creator can take
-default actions that are executed if certain conditions are met. 
+default actions that are executed if certain conditions are met.
 
 #### pending
 
@@ -124,13 +124,13 @@ If an action type is provided to `pending`, then an action will be dispatched
 prior to the request being sent to the server.
 
 The payload of the dispatched action will be the `request` object we are sending
-to the server, which will contain any body, params, and/or query values. 
+to the server, which will contain any body, params, and/or query values.
 
-#### success & failure 
+#### success & failure
 
 If an action type is passed to `success` or `failure`, then either of those
 will be invoked depending on whether or not the response received from the
-server passes the `successTest`. 
+server passes the `successTest`.
 
 When either of these actions are dispatched, they are provided with a payload
 of:
@@ -139,7 +139,7 @@ of:
 - `{object} request` - the original request sent to the server
 
 The reason we provide you with both is so that you can reset data, compare
-previous and current data, etc. 
+previous and current data, etc.
 
 #### abort
 
@@ -263,3 +263,75 @@ already finished.
 #### request.isDone() => boolean
 
 This method should be used to determine if the request has been completed or not.
+
+### Static Methods
+
+The `APIActionCreator` class provides static methods to set default options across all API Action Creator instances.
+
+#### APIActionCreator.setDefaultHeaders(headers)
+
+This method sets default headers to be applied to all requests created by `APIActionCreator` instances.
+
+```javascript
+var APIActionCreator = require('fluxthis').APIActionCreator;
+
+APIActionCreator.setDefaultHeaders({
+    'X-Custom-Header': '1234'
+});
+```
+
+Individual APIActionCreator methods can override default headers or remove them by setting to `undefined`.
+
+```javascript
+var apiAC = new APIActionCreator({
+    displayName: 'UserAPIActionCreator',
+    getUsers: {
+        route: '/user',
+        method: 'GET',
+        pending: 'RECEIVE_USER_PENDING',
+        success: 'RECEIVE_USER_SUCCESS',
+        failure: 'RECEIVE_USER_FAILURE',
+        createRequest() {
+            return {
+                headers: {
+                    // Unset default header
+                    'X-Custom-Header': undefined
+                }
+            };
+        }
+    }
+});
+```
+
+#### APIActionCreator.setDefaultBaseURL(url)
+
+This method sets a base URL to which all `route` options will be appended. A `route` will not be appended to the baseURL id the route itself is a fully qualified URL (i.e. `'http://example.com'`).
+
+```javascript
+var APIActionCreator = require('fluxthis').APIActionCreator;
+
+APIActionCreator.setDefaultBaseURL('http://fluxthis.io/');
+```
+
+```javascript
+var apiAC = new APIActionCreator({
+    displayName: 'UserAPIActionCreator',
+    getUsers: {
+        // Request will be made to http://fluxthis.io/user
+        route: '/user',
+        method: 'GET',
+        pending: 'RECEIVE_USER_PENDING',
+        success: 'RECEIVE_USER_SUCCESS',
+        failure: 'RECEIVE_USER_FAILURE'
+    },
+
+    getExampleUser: {
+        // Request will be made to http://example.com/user
+        route: 'http://example.com/user',
+        method: 'GET',
+        pending: 'RECEIVE_EXAMPLE_USER_PENDING',
+        success: 'RECEIVE_EXAMPLE_USER_SUCCESS',
+        failure: 'RECEIVE_EXAMPLE_USER_FAILURE'
+    }
+});
+```
