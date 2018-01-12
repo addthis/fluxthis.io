@@ -74,6 +74,52 @@ This method will reset any mocked public methods. It will not reset
 any private variables that may have changed, so if you wish to reset
 both, then please checkout `TestUtils.reset()`.
 
+## TestUtils.setPrivateMembers()
+
+This method can be used to set the value of any private members.
+
+This is useful for arranging your store to be a known state before hand,
+dispatching an event, and then asserting your state is as expected:
+
+```javascript
+var Store = new ImmutableStore({
+    displayName: 'CountingStore',
+
+    init: function () {
+        this.count = 0;
+        this.bindActions(
+            'ON_BUTTON_CLICKED', this.onButtonClicked
+        );
+    },
+    private: {
+        onButtonClicked: function () {
+            this.count = this.count + 1;
+        }
+    },
+    public: {
+        getCount: function () {
+            return this.count;
+        }
+    }
+});
+
+console.log(Store.getCount()); // 0
+
+Store.TestUtils.setPrivateMembers({
+    count: 5
+});
+
+console.log(Store.getCount()); // 5
+
+Store.TestUtils.mockDispatch({
+    type: 'ON_BUTTON_CLICKED'
+});
+
+console.log(Store.getCount()); // 6
+
+Store.TestUtils.reset(); // See below
+```
+
 ### TestUtils.reset()
 
 This method gives you the capability to reset a given store back to
@@ -83,7 +129,6 @@ This allows you to reset your Store across tests, so that it's in
 a known state at the start of a given Test. Typically, you would
 reset the store beforeEach unit test or after some subset of tests,
 so that you can set it up again.
-
 
 ### ReactTestUtils - Setting Initial State
 
@@ -99,4 +144,4 @@ var container = ReactTestUtils.renderIntoDocument(WidgetSettingsContainer({initi
 ```
 
 As you will notice in the above example, if you pass in a prop value of
-`initialState`, then FluxThis will use that prop value to set your state. 
+`initialState`, then FluxThis will use that prop value to set your state.
