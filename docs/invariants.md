@@ -2,7 +2,7 @@
 
 Here you will find a list of the more confusing invariants we throw at you to show you how much we love you.
 
-##ActionCreator invariants
+## ActionCreator invariants
 
 ```js
 invariant(
@@ -20,7 +20,7 @@ invariant(
 ```
 Without an `type`, stores most likely wont know what to do with an action. This mostly helps out when you accidentally pass `undefined` due to a typo'd constant.
 
-###Dispatcher invariants
+## Dispatcher invariants
 ```js
 invariant(
   action.type !== undefined && action.type !== null,
